@@ -167,7 +167,7 @@ function mark_test_attempt_started_callback()
  markAttemptAsStarted($attempt_label);
  // Process the AJAX request and generate a response
  $response = array(
-  'message' => 'Attempt Marked As Finished!',
+  'message' => 'Attempt Marked As Started!',
  );
 
  // Send the JSON-encoded response
