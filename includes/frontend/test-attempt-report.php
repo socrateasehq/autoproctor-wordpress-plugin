@@ -6,6 +6,7 @@ $isDevelopmentMode           = $autoproctor_plugin_settings['development_mode'];
 $domain                      = $isDevelopmentMode ? "https://staging.autoproctor.co" : "https://autoproctor.co/";
 $attemptLabel                = get_query_var('attempt_label');
 $hashedTestAttemptId         = get_query_var('hashed_test_attempt_id');
+
 ?>
 
 <!DOCTYPE html>
@@ -17,8 +18,8 @@ $hashedTestAttemptId         = get_query_var('hashed_test_attempt_id');
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://ap-development.s3.amazonaws.com/autoproctor.2.7.9.min.css" />
-	<script defer src="https://ap-development.s3.amazonaws.com/autoproctor.2.7.9.min.js"></script>
+	<link rel="stylesheet" href="https://ap-development.s3.amazonaws.com/autoproctor.2.7.8.min.css" />
+	<script defer src="https://ap-development.s3.amazonaws.com/autoproctor.2.7.8.min.js"></script>
 </head>
 <body>
     <div class="container mx-auto mt-8 max-w-5xl mx-auto">
@@ -86,7 +87,7 @@ $hashedTestAttemptId         = get_query_var('hashed_test_attempt_id');
 <script>
     window.addEventListener('load', async function() {
         const apReportSettings =
-                {tenantId: '<?php echo $clientId; ?>', testAttemptId: '<?php echo $attemptLabel; ?>', hashedTestAttemptId: '<?php echo $hashedTestAttemptId; ?>', domain: 'http://127.0.0.1:5002'};
+                {tenantId: '<?php echo $clientId; ?>', testAttemptId: '<?php echo $attemptLabel; ?>', hashedTestAttemptId: '<?php echo $hashedTestAttemptId; ?>', domain: "<?php echo $domain; ?>"};
         try {
             autoProctorTest = await initAutoProctorReport(apReportSettings);
             autoProctorTest.renderProctoringSummary({

@@ -7,7 +7,7 @@ $results                     = getAllAttemptsDataByTestId($test_id);
 if ($results) {
  foreach ($results as $row) {
   $hashedLabel     = getHashedTestAttemptId($row->test_attempt_label);
-  $row->report_url = '/test-attempt-report/' . $row->test_attempt_label . '/?hashed_test_attempt_id=' . $hashedLabel;
+  $row->report_url = home_url() . '/test-attempt-report/' . $row->test_attempt_label . '/?hashed_test_attempt_id=' . $hashedLabel;
  }
 }
 

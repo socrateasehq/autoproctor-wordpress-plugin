@@ -26,15 +26,15 @@ $testAttemtId = generateRandomString();
         <div class="mb-4">
             <h2 class="text-xl font-bold mb-2">Test 1</h2>
             <div class="flex">
-                <a target="_blank" href="/start-test/1/<?php echo $testAttemtId; ?>/" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2">Start Test 1</a>
-                <a target="_blank" href="/test-attempts/1/" class="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded">View Attempts of Test 1</a>
+                <a target="_blank" href="<?php echo home_url(); ?>/start-test/1/<?php echo $testAttemtId; ?>/" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2">Start Test 1</a>
+                <a target="_blank" href="<?php echo home_url(); ?>/test-attempts/1/" class="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded">View Attempts of Test 1</a>
             </div>
         </div>
         <div>
             <h2 class="text-xl font-bold mb-2">Test 2</h2>
             <div class="flex">
-                <a target="_blank" href="/start-test/2/<?php echo $testAttemtId; ?>/" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2">Start Test 2</a>
-                <a target="_blank" href="/test-attempts/2/" class="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded">View Attempts of Test 2</a>
+                <a target="_blank" href="<?php echo home_url(); ?>/start-test/2/<?php echo $testAttemtId; ?>/" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2">Start Test 2</a>
+                <a target="_blank" href="<?php echo home_url(); ?>/test-attempts/2/" class="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded">View Attempts of Test 2</a>
             </div>
         </div>
     </div>
