@@ -10,7 +10,7 @@ $testAttemptId = generateRandomString();
     <title>Instructions</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="h-screen bg-blue-100" style="font-family: lato" >
+<body class="min-h-screen bg-gradient-to-b from-blue-200 to-white" style="font-family: lato" >
     <div class="container mx-auto mt-8">
         <div class="w-11/12 mx-auto shadow-bottom">
             <h1 class="text-3xl md:text-5xl font-bold mb-8 text-blue-900">AutoProctor WordPress Plugin Guide</h1>
