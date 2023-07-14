@@ -1,15 +1,4 @@
 <?php
-function generateRandomString($length = 10)
-{
- $characters       = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
- $charactersLength = strlen($characters);
- $randomString     = '';
- for ($i = 0; $i < $length; $i++) {
-  $randomString .= $characters[random_int(0, $charactersLength - 1)];
- }
- return $randomString;
-}
-
 $testAttemptId = generateRandomString();
 ?>
 <!DOCTYPE html>
@@ -17,12 +6,7 @@ $testAttemptId = generateRandomString();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap" rel="stylesheet">
     <title>Instructions</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
