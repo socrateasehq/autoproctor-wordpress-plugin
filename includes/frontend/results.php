@@ -18,7 +18,7 @@ if ($results) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Attempts</title>
+    <title>Test Results</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://ap-development.s3.ap-south-1.amazonaws.com/socTable.css">
     <script src="https://ap-development.s3.ap-south-1.amazonaws.com/socTable.js"></script>

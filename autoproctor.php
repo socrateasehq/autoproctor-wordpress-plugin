@@ -181,10 +181,11 @@ add_action('init', 'autoproctor_register_routes');
 function autoproctor_register_routes()
 {
  global $wp_rewrite;
- add_rewrite_rule('^tests/?$', 'index.php?my_custom_route=1', 'top');
- add_rewrite_rule('^start-test/([^/]+)/([^/]+)/?$', 'index.php?my_custom_route=2&test_id=$matches[1]&attempt_label=$matches[2]', 'top');
- add_rewrite_rule('^test-attempts/([^/]+)/?$', 'index.php?my_custom_route=4&test_id=$matches[1]', 'top');
- add_rewrite_rule('^test-attempt-report/([^/]+)/?$', 'index.php?my_custom_route=5&attempt_label=$matches[1]', 'top');
+ add_rewrite_rule('^ap/instructions/?$', 'index.php?my_custom_route=1', 'top');
+ add_rewrite_rule('^ap/tests/([^/]+)/([^/]+)/?$', 'index.php?my_custom_route=2&test_id=$matches[1]&attempt_label=$matches[2]', 'top');
+ add_rewrite_rule('^ap/results/([^/]+)/?$', 'index.php?my_custom_route=4&test_id=$matches[1]', 'top');
+ add_rewrite_rule('^ap/report/([^/]+)/?$', 'index.php?my_custom_route=5&attempt_label=$matches[1]', 'top');
+ add_rewrite_rule('^ap-docs?$', 'index.php?my_custom_route=6', 'top');
  flush_rewrite_rules();
 
 }
@@ -206,28 +207,33 @@ function renderAutoproctorTemplate($template)
  $test_id       = get_query_var('test_id');
 
  if ($custom_route === '1') {
-  $new_template = plugin_dir_path(__FILE__) . '/includes/frontend/tests-available.php';
+  $new_template = plugin_dir_path(__FILE__) . '/includes/frontend/instructions.php';
 
   if (file_exists($new_template)) {
    return $new_template;
   }
  } elseif ($custom_route === '2') {
-  $new_template = plugin_dir_path(__FILE__) . '/includes/frontend/start-test.php';
+  $new_template = plugin_dir_path(__FILE__) . '/includes/frontend/tests.php';
 
   if (file_exists($new_template)) {
    return $new_template;
   }
  } elseif ($custom_route === '4' && $test_id) {
-  $new_template = plugin_dir_path(__FILE__) . '/includes/frontend/tests-attempts.php';
+  $new_template = plugin_dir_path(__FILE__) . '/includes/frontend/results.php';
   if (file_exists($new_template)) {
    return $new_template;
   }
  } elseif ($custom_route === "5") {
-  $new_template = plugin_dir_path(__FILE__) . '/includes/frontend/test-attempt-report.php';
+  $new_template = plugin_dir_path(__FILE__) . '/includes/frontend/report.php';
   if (file_exists($new_template)) {
    return $new_template;
   }
- }
+ }elseif ($custom_route === "6") {
+    $new_template = plugin_dir_path(__FILE__) . '/includes/frontend/ap-docs.php';
+    if (file_exists($new_template)) {
+     return $new_template;
+    }
+   }
 
  return $template;
 }

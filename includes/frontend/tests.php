@@ -21,7 +21,7 @@ if ($result) {
 $hashedTestAttemptId = getHashedTestAttemptId($testAttemtId);
 
 $test_url   = $test_id === '1' ? "https://docs.google.com/forms/d/e/1FAIpQLSfcy9oLz_Phz_3bpEOgD9Qj2fk-Axeo_ZDcBy23fEyczdR__A/viewform?usp=sf_link" : "https://docs.google.com/forms/d/e/1FAIpQLScPtvVxyzk6BamQ77tJlZSPHoPFyvdCQrPdKgAErFGTV6hTbg/viewform?usp=sf_link";
-$report_url = home_url() . '/test-attempt-report/' . $testAttemtId . '/?hashed_test_attempt_id=' . $hashedTestAttemptId;
+$report_url = home_url() . '/ap/report/' . $testAttemtId . '/?hashed_test_attempt_id=' . $hashedTestAttemptId;
 ?>
 
 <head>
@@ -43,7 +43,7 @@ if (!$is_finished) {
 ?>
 </head>
 
-<body>
+<body class="bg-gradient-to-b from-blue-200 to-white" >
     <?php
 
 if ($is_finished) {
@@ -55,14 +55,54 @@ if ($is_finished) {
     <?php
 } else {
  ?>
-    <div id="ap-test-main">
-        <div class="w-full p-4 bg-white" style="padding: 12px; display: flex; align-items: center; gap: 12px;">
-            <button id="testStart" style="padding: 9px 18px; border-radius: 5px; font-size: 16px; border: none; outline: none; background: #1ac407; color: white; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">Start Proctoring</button>
-            <button id="testEnd" style="background: white; padding: 9px 18px; border-radius: 5px; font-size: 16px; border: 1px solid red; outline: none; color: red; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">End Proctoring</button>
-            <button id="testReload" style="background: white; padding: 9px 18px; border-radius: 5px; font-size: 16px; border: 1px solid #525252; outline: none; color: #525252; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">Reload</button>
-            <button id="testLabel" style="background: white; padding: 9px 18px; border-radius: 5px; font-size: 16px; border: 1px solid #525252; outline: none; color: #525252; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;display:none;">Show Test Label</button>
-            <div id="ap-test-proctoring-status"></div>
-            <div id="proctor-feedback"></div>
+    <div id="ap-test-main" class="mt-8">
+        <div class="w-11/12 md:w-10/12 mx-auto shadow-bottom">
+            <h1 class="text-3xl md:text-5xl font-bold mb-8 text-blue-900">Test <?php echo $test_id; ?></h1>
+            <p class="text-blue-900 mb-4 font-bold text-lg md:text-2xl"> 
+                This page demonastrates the interface of any test that a user will open when they click on <code class="uppercase text-green-600 font-bold">"start test"</code>
+            </p>
+            <ol class="text-blue-900 mb-14 w-full 2xl:w-3/4 list-disc py-8 px-14 bg-white rounded-lg shadow-lg">
+                <li class="mb-2 ">
+                    When a user clicks on <span class="text-green-600 uppercase tracking-wide font-bold mx-1">"start proctoring"</span>, 
+                </li> 
+
+                <li class="mb-2 ">
+                    After granting all the permission the Platform will show another pop-up asking them to upload a photo of themselves
+                </li>
+
+                <li class="mb-2 ">
+                    Once this is uploaded, the candidate will see a message asking them to open the same URL on an auxiliary device.
+                </li> 
+                
+                <li class="mb-2 ">
+                    When the auxiliary device is connected, the candidate is asked to scan the room with the auxiliary device and a video is recorded.
+                </li> 
+
+                <li class="mb-2 ">
+                    Once the video recording is done, the user can start the test on their primary device.
+                </li> 
+
+                <li class="mb-2 ">
+                    AI proctoring starts on the primary device, and the random photos are taken on the auxiliary device
+                </li> 
+
+                <li class="mb-2 ">
+                    When the user is done with the test he should first <span class="text-green-600 uppercase tracking-wide font-bold mx-1">"submit"</span> the test (say the submit button in google form, which can be the submit button of any other test). Then they should click <span class="text-red-600 uppercase tracking-wide font-bold mx-1">"end proctoring"</span>
+                </li> 
+
+                <li class="mb-2 ">
+                    Once the test ends, the Platform will generate a report with data from both devices.  In addition to the usual report it generates on the primary device, it will show the photos that were taken every 10 seconds.
+                </li> 
+            </ol>
+
+        </div>
+        <div class="w-11/12 md:w-10/12 mx-auto flex flex-col md:flex-row justify-start items-center my-10" >
+            <button id="testStart" class="bg-none border-2 border-green-600 rounded-full hover:bg-green-600 hover:text-white transition-all text-green-600 text-xs md:text-sm lg:text-base font-normal py-2 px-4 rounded mr-2 uppercase tracking-wide">Start Proctoring</button>
+            <button id="testEnd" class="bg-none border-2 border-red-700 rounded-full hover:bg-red-700 hover:text-white transition-all text-red-700 text-xs md:text-sm lg:text-base font-normal ml-3 py-2 px-4 rounded uppercase tracking-wide">End Proctoring</button>
+            <button id="testReload" class="bg-none border-2 border-blue-900 rounded-full hover:bg-blue-900 hover:text-white transition-all text-blue-900 text-xs md:text-sm lg:text-base font-normal ml-3 py-2 px-4 rounded uppercase tracking-wide">Reload</button>
+            <button id="testLabel" class="bg-none border-2 border-black rounded-full hover:bg-black hover:text-white transition-all text-black text-xs md:text-sm lg:text-base font-normal ml-3 py-2 px-4 rounded uppercase tracking-wide hidden">Show Test Label</button>
+            <div id="ap-test-proctoring-status" ></div>
+            <div id="proctor-feedback" class="bg-none rounded-full transition-all text-yellow-600 text-bolder text-xs md:text-sm lg:text-base font-normal ml-3 py-2 px-4 rounded uppercase tracking-wide "></div>
         </div>
 
         <div id="ap-test-ctr-main" style="display:none;">
@@ -86,7 +126,6 @@ if ($is_finished) {
         var allowSameDeviceasPrimarySecondary = true;
         window.addEventListener("load", function () {
             const clientID = '<?php echo $clientId ?>';
-            const clientSecret = '<?php echo $clientSecret ?>';
 
             let testAttemptId = '<?php echo $testAttemtId; ?>';
 
@@ -135,7 +174,7 @@ if ($is_finished) {
                     });
 
                     window.addEventListener("apStartTest", () => {
-                        markTestAsStarted(testAttemptId);
+                        markTestAsStarted(testAttemptId, '<?php echo $ajax_url; ?>');
                         document.getElementById('ap-test-ctr-main').style.display = "block";
                         $("#testEnd").prop("disabled", false);
                         $("#testStart").prop("disabled", true);
@@ -153,7 +192,7 @@ if ($is_finished) {
                             document.getElementById('report-url-ctr').style.display = "none";
                             return;
                         }
-                        markTestAttemptAsFinished(testAttemptId);
+                        markTestAttemptAsFinished(testAttemptId, '<?php echo $ajax_url; ?>');
                     });
                     document.getElementById("testReload").addEventListener("click", () => {
                         window.location.reload();
