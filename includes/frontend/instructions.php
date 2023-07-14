@@ -10,7 +10,7 @@ function generateRandomString($length = 10)
  return $randomString;
 }
 
-$testAttemtId = generateRandomString();
+$testAttemptId = generateRandomString();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +48,7 @@ $testAttemtId = generateRandomString();
                     <p class="font-light">This is a brief description of test</p>
                 </div>
                 <div class="flex flex-row w-full md:w-1/3 justify-end">
-                    <a target="_blank" href="<?php echo home_url(); ?>/ap/tests/1/<?php echo $testAttemtId; ?>/" class="bg-green-600 rounded-full hover:scale-95 transition-all text-white text-xs md:text-sm lg:text-base font-normal py-2 px-4 rounded mr-2 uppercase tracking-wide">Start Test</a>
+                    <a target="_blank" href="<?php echo home_url(); ?>/ap/tests/1/<?php echo $testAttemptId; ?>/" class="bg-green-600 rounded-full hover:scale-95 transition-all text-white text-xs md:text-sm lg:text-base font-normal py-2 px-4 rounded mr-2 uppercase tracking-wide">Start Test</a>
                     <a target="_blank" href="<?php echo home_url(); ?>/ap/results/1/" class="bg-none border-2 border-green-600 rounded-full hover:scale-95 transition-all text-green-600 text-xs md:text-sm lg:text-base font-normal ml-3 py-2 px-4 rounded uppercase tracking-wide">View Attempts</a>
                 </div>
             </li>
@@ -59,7 +59,7 @@ $testAttemtId = generateRandomString();
                     <p class="font-light">This is a long description of test. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, ut vitae distinctio natus tenetur quisquam rerum similique itaque aperiam error placeat quam reprehenderit nam quis ipsa corrupti. Repudiandae, illo pariatur.</p>
                 </div>
                 <div class="flex flex-row w-full md:w-1/3 justify-end">
-                    <a target="_blank" href="<?php echo home_url(); ?>/ap/tests/2/<?php echo $testAttemtId; ?>/" class="bg-green-600 rounded-full hover:scale-95 transition-all text-white text-xs md:text-sm lg:text-base font-normal py-2 px-4 rounded mr-2 uppercase tracking-wide">Start Test</a>
+                    <a target="_blank" href="<?php echo home_url(); ?>/ap/tests/2/<?php echo $testAttemptId; ?>/" class="bg-green-600 rounded-full hover:scale-95 transition-all text-white text-xs md:text-sm lg:text-base font-normal py-2 px-4 rounded mr-2 uppercase tracking-wide">Start Test</a>
                     <a target="_blank" href="<?php echo home_url(); ?>/ap/results/2/" class="bg-none border-2 border-green-600 rounded-full hover:scale-95 transition-all text-green-600 text-xs md:text-sm lg:text-base font-normal ml-3 py-2 px-4 rounded uppercase tracking-wide">View Attempts</a>
                 </div>
             </li>

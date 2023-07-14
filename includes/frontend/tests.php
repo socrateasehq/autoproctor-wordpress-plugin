@@ -5,23 +5,23 @@ $clientId                    = $autoproctor_plugin_settings['client_id'];
 $clientSecret                = $autoproctor_plugin_settings['client_secret'];
 $isDevelopmentMode           = $autoproctor_plugin_settings['development_mode'];
 $domain                      = $isDevelopmentMode ? "https://staging.autoproctor.co" : "https://autoproctor.co/";
-$testAttemtId                = get_query_var('attempt_label');
+$testAttemptId                = get_query_var('attempt_label');
 $test_id                     = get_query_var('test_id');
 $ajax_url                    = admin_url('admin-ajax.php');
-$result                      = get_test_attempt_result($testAttemtId, $test_id);
+$result                      = get_test_attempt_result($testAttemptId, $test_id);
 $is_finished                 = false;
 if ($result) {
  if ($result->finished === "true") {
   $is_finished = true;
  }
 } else {
- createTestAttempt($testAttemtId, $test_id);
+ createTestAttempt($testAttemptId, $test_id);
 }
 
-$hashedTestAttemptId = getHashedTestAttemptId($testAttemtId);
+$hashedTestAttemptId = getHashedTestAttemptId($testAttemptId);
 
 $test_url   = $test_id === '1' ? "https://docs.google.com/forms/d/e/1FAIpQLSfcy9oLz_Phz_3bpEOgD9Qj2fk-Axeo_ZDcBy23fEyczdR__A/viewform?usp=sf_link" : "https://docs.google.com/forms/d/e/1FAIpQLScPtvVxyzk6BamQ77tJlZSPHoPFyvdCQrPdKgAErFGTV6hTbg/viewform?usp=sf_link";
-$report_url = home_url() . '/ap/report/' . $testAttemtId . '/?hashed_test_attempt_id=' . $hashedTestAttemptId;
+$report_url = home_url() . '/ap/report/' . $testAttemptId . '/?hashed_test_attempt_id=' . $hashedTestAttemptId;
 ?>
 
 <head>
@@ -127,7 +127,7 @@ if ($is_finished) {
         window.addEventListener("load", function () {
             const clientID = '<?php echo $clientId ?>';
 
-            let testAttemptId = '<?php echo $testAttemtId; ?>';
+            let testAttemptId = '<?php echo $testAttemptId; ?>';
 
             const hashedTestAttemptId = '<?php echo $hashedTestAttemptId; ?>';
 
@@ -215,13 +215,13 @@ if ($is_finished) {
             console.log('Aux Device Confirmed');
         });
 
-        async function markTestAttemptAsFinished(testAttemtId) {
+        async function markTestAttemptAsFinished(testAttemptId) {
             $.ajax({
                 url: '<?php echo $ajax_url; ?>',
                 type: 'POST',
                 data: {
                     action: 'mark_test_attempt_finished',
-                    testAttemptLabel : testAttemtId
+                    testAttemptLabel : testAttemptId
                 },
                 success: function(response) {
                     // Handle the AJAX response
@@ -234,13 +234,13 @@ if ($is_finished) {
             });
         }
 
-        async function markTestAsStarted(testAttemtId) {
+        async function markTestAsStarted(testAttemptId) {
             $.ajax({
                 url: '<?php echo $ajax_url; ?>',
                 type: 'POST',
                 data: {
                     action: 'mark_test_attempt_started',
-                    testAttemptLabel : testAttemtId
+                    testAttemptLabel : testAttemptId
                 },
                 success: function(response) {
                     // Handle the AJAX response
