@@ -193,7 +193,7 @@ function autoproctor_register_routes()
 {
  global $wp_rewrite;
  add_rewrite_rule('^ap/instructions/?$', 'index.php?my_custom_route=1', 'top');
- add_rewrite_rule('^ap/tests/([^/]+)/([^/]+)/?$', 'index.php?my_custom_route=2&test_id=$matches[1]&attempt_label=$matches[2]', 'top');
+ add_rewrite_rule('^ap/dummy-tests/([^/]+)/([^/]+)/?$', 'index.php?my_custom_route=2&test_id=$matches[1]&attempt_label=$matches[2]', 'top');
  add_rewrite_rule('^ap/results/([^/]+)/?$', 'index.php?my_custom_route=4&test_id=$matches[1]', 'top');
  add_rewrite_rule('^ap/report/([^/]+)/?$', 'index.php?my_custom_route=5&attempt_label=$matches[1]', 'top');
  add_rewrite_rule('^ap-docs?$', 'index.php?my_custom_route=6', 'top');
