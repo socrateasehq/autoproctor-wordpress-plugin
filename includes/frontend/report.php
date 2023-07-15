@@ -1,14 +1,7 @@
 <?php include 'base.php' ?>
 
 <?php
-$autoproctor_plugin_settings = get_option('autoproctor_settings');
-$clientId                    = $autoproctor_plugin_settings['client_id'];
-$clientSecret                = $autoproctor_plugin_settings['client_secret'];
-$isDevelopmentMode           = $autoproctor_plugin_settings['development_mode'];
-$domain                      = $isDevelopmentMode ? "https://staging.autoproctor.co" : "https://autoproctor.co/";
-$attemptLabel                = get_query_var('attempt_label');
-$hashedTestAttemptId         = get_query_var('hashed_test_attempt_id');
-
+  $hashedTestAttemptId  = get_query_var('hashed_test_attempt_id');
 ?>
 
 <?php startblock('title') ?>

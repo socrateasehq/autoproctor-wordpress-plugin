@@ -1,20 +1,5 @@
 <?php include 'base.php' ?>
 
-<?php
-$autoproctor_plugin_settings = get_option('autoproctor_settings');
-$clientId                    = $autoproctor_plugin_settings['client_id'];
-$test_id                     = get_query_var('test_id');
-$results                     = getAllAttemptsDataByTestId($test_id);
-
-if ($results) {
- foreach ($results as $row) {
-  $hashedLabel     = getHashedTestAttemptId($row->test_attempt_label);
-  $row->report_url = home_url() . '/ap/report/' . $row->test_attempt_label . '/?hashed_test_attempt_id=' . $hashedLabel;
- }
-}
-
-?>
-
 <?php startblock('title') ?>
     Test Results
 <?php endblock() ?>

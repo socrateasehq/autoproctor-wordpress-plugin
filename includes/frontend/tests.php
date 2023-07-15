@@ -1,30 +1,5 @@
 <?php include 'base.php' ?>
 
-<?php
-$autoproctor_plugin_settings = get_option('autoproctor_settings');
-$clientId                    = $autoproctor_plugin_settings['client_id'];
-$clientSecret                = $autoproctor_plugin_settings['client_secret'];
-$isDevelopmentMode           = $autoproctor_plugin_settings['development_mode'];
-$domain                      = $isDevelopmentMode ? "https://staging.autoproctor.co" : "https://autoproctor.co/";
-$testAttemptId                = get_query_var('attempt_label');
-$test_id                     = get_query_var('test_id');
-$ajax_url                    = admin_url('admin-ajax.php');
-$result                      = get_test_attempt_result($testAttemptId, $test_id);
-$is_finished                 = false;
-if ($result) {
- if ($result->finished === "true") {
-  $is_finished = true;
- }
-} else {
- createTestAttempt($testAttemptId, $test_id);
-}
-
-$hashedTestAttemptId = getHashedTestAttemptId($testAttemptId);
-
-$test_url   = $test_id === '1' ? "https://docs.google.com/forms/d/e/1FAIpQLSfcy9oLz_Phz_3bpEOgD9Qj2fk-Axeo_ZDcBy23fEyczdR__A/viewform?usp=sf_link" : "https://docs.google.com/forms/d/e/1FAIpQLScPtvVxyzk6BamQ77tJlZSPHoPFyvdCQrPdKgAErFGTV6hTbg/viewform?usp=sf_link";
-$report_url = home_url() . '/ap/report/' . $testAttemptId . '/?hashed_test_attempt_id=' . $hashedTestAttemptId;
-?>
-
 <?php startblock('title') ?>
     AutoProctor Test
 <?php endblock() ?>

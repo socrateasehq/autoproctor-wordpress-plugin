@@ -5,7 +5,7 @@
 <?php endblock() ?>
 
 <?php startblock('body') ?>
-<body
+  <body
     class="min-h-screen bg-gradient-to-b from-blue-200 to-white"
     style="font-family: lato"
   >
