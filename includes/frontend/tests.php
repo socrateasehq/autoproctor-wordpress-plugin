@@ -118,7 +118,6 @@
                         captureSwitchedTab: true,
                         photosAtRandom: true,
                         numPhotosAtRandom: 5,
-                        recordSession: true,
                         preventMultipleScreens: true,
                         testTakerPhoto: true,
                         forceCaptureSwitchedTab: true,
