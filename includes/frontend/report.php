@@ -18,49 +18,49 @@ Test Report
 
 <?php startblock('body') ?>
 
-<body class="min-h-screen bg-gradient-to-b from-blue-200 to-white" style="font-family: lato">
-    <div class="container mx-auto mt-8 max-w-5xl mx-auto">
-        <h1 class="text-3xl font-bold mb-4">Test Attempts Report <?php echo $attemptLabel; ?> </h1>
-        <div id="ap-test-report-overview"
-            class="max-w-5xl mx-auto bg-gradient-to-r from-green-100/50 to-slate-100 p-10 px-20 rounded-2xl shadow-2xl my-20">
-            <h1 class="text-2xl md:text-4xl text-center mb-14">
-                Report Overview
-            </h1>
-        </div>
-        <div id="ap-proctor-summary"
-            class="max-w-5xl mx-auto bg-gradient-to-l from-green-100/50 to-slate-100 p-10 px-20 rounded-2xl shadow-2xl my-20">
-            <h1 class="text-2xl md:text-4xl text-center mb-14">
-                Proctor Summary
-            </h1>
-        </div>
-    </div>
-    </div>
+  <body class="min-h-screen bg-gradient-to-b from-blue-200 to-white" style="font-family: lato">
+      <div class="container mx-auto mt-8 max-w-5xl mx-auto">
+          <h1 class="text-3xl font-bold mb-4">Test Attempts Report <?php echo $attemptLabel; ?> </h1>
+          <div id="ap-test-report-overview"
+              class="max-w-5xl mx-auto bg-gradient-to-r from-green-100/50 to-slate-100 p-10 px-20 rounded-2xl shadow-2xl my-20">
+              <h1 class="text-2xl md:text-4xl text-center mb-14">
+                  Report Overview
+              </h1>
+          </div>
+          <div id="ap-proctor-summary"
+              class="max-w-5xl mx-auto bg-gradient-to-l from-green-100/50 to-slate-100 p-10 px-20 rounded-2xl shadow-2xl my-20">
+              <h1 class="text-2xl md:text-4xl text-center mb-14">
+                  Proctor Summary
+              </h1>
+          </div>
+      </div>
+      </div>
 
-</body>
+  </body>
 
-<script>
-window.addEventListener('load', async function() {
-    const apReportSettings = {
-        tenantId: '<?php echo $clientId; ?>',
-        testAttemptId: '<?php echo $attemptLabel; ?>',
-        hashedTestAttemptId: '<?php echo $hashedTestAttemptId; ?>',
-        domain: "<?php echo $domain; ?>"
-    };
-    try {
-        autoProctorTest = await initAutoProctorReport(apReportSettings);
-        autoProctorTest.renderProctoringSummary({
-            renderOverview: true,
-            proctorOverviewCtrId: "ap-test-report-overview",
-            renderSummaryTable: true,
-            proctorSummaryCtrId: "ap-proctor-summary",
-            userDetails: {
-                name: "First Last",
-                email: "useremail@gmail.com",
-            },
-        });
-    } catch (err) {
-        console.log(err);
-    }
-});
-</script>
+  <script>
+  window.addEventListener('load', async function() {
+      const apReportSettings = {
+          tenantId: '<?php echo $clientId; ?>',
+          testAttemptId: '<?php echo $attemptLabel; ?>',
+          hashedTestAttemptId: '<?php echo $hashedTestAttemptId; ?>',
+          domain: "<?php echo $domain; ?>"
+      };
+      try {
+          autoProctorTest = await initAutoProctorReport(apReportSettings);
+          autoProctorTest.renderProctoringSummary({
+              renderOverview: true,
+              proctorOverviewCtrId: "ap-test-report-overview",
+              renderSummaryTable: true,
+              proctorSummaryCtrId: "ap-proctor-summary",
+              userDetails: {
+                  name: "First Last",
+                  email: "useremail@gmail.com",
+              },
+          });
+      } catch (err) {
+          console.log(err);
+      }
+  });
+  </script>
 <?php endblock() ?>
