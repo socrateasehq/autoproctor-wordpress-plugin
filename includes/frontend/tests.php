@@ -144,7 +144,7 @@
                     previewVideo: false,
                     forceDesktop: true,
                     showCamPreview: false,
-                    auxiliaryDevice: true,
+                    auxiliaryDevice: <?php echo $test_id; ?> == 1? true: false,
                 },
                 restrictConsole: false,
                 evidencePushInterval: 5,
@@ -154,7 +154,7 @@
                 domain: '<?php echo $domain; ?>',
                 showHowToVideo: false
             };
-
+            console.log(apSettings)
             async function init() {
                 try {
                     autoProctorTest = await initAutoProctor(apSettings);

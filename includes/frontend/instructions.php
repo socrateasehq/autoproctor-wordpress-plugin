@@ -77,10 +77,10 @@ Instructions
                           Proctoring without auxiliary device
                       </p>
                       <div class="flex flex-row w-full mt-10 justify-around">
-                          <a target="_blank" href="<?php echo home_url(); ?>/ap/dummy-tests/1/<?php echo $testAttemptId; ?>/"
+                          <a target="_blank" href="<?php echo home_url(); ?>/ap/dummy-tests/2/<?php echo $testAttemptId; ?>/"
                               class="bg-green-600 rounded-full hover:scale-95 transition-all text-white text-xs md:text-sm lg:text-base font-normal py-2 px-4 rounded uppercase tracking-wide">Start
                               Test</a>
-                          <a target="_blank" href="<?php echo home_url(); ?>/ap/results/1/"
+                          <a target="_blank" href="<?php echo home_url(); ?>/ap/results/2/"
                               class="bg-none border-2 border-green-600 rounded-full hover:scale-95 transition-all text-green-600 text-xs md:text-sm lg:text-base font-normal ml-3 py-2 px-4 rounded uppercase tracking-wide">View
                               Attempts</a>
                       </div>
