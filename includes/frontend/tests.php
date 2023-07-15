@@ -96,14 +96,14 @@
                 <button id="testLabel"
                     class="bg-none border-2 border-black rounded-full hover:bg-black hover:text-white transition-all text-black text-xs md:text-sm lg:text-base font-normal ml-3 py-2 px-4 rounded uppercase tracking-wide hidden">Show
                     Test Label</button>
-                <div id="ap-test-proctoring-status"></div>
+                <div id="ap-test-proctoring-status" class=" text-3xl text-blue-900 font-bold ml-14 animate-pulse"></div>
                 <div id="proctor-feedback"
                     class="bg-none rounded-full transition-all text-yellow-600 text-bolder text-xs md:text-sm lg:text-base font-normal ml-3 py-2 px-4 rounded uppercase tracking-wide ">
                 </div>
             </div>
 
             <div id="ap-test-ctr-main" style="display:none;">
-                <iframe id="google-form-iframe" importance="high" width="100%" height="100%" src="<?php echo $test_url; ?>"
+                <iframe id="google-form-iframe" importance="high" width="100%" height="100%"
                     frameborder="0" marginheight="0" marginwidth="0" class="w-full h-full">
                     Loading…
                 </iframe>
@@ -172,6 +172,7 @@
                     window.addEventListener("apStartTest", () => {
                         markTestAsStarted(testAttemptId, '<?php echo $ajax_url; ?>');
                         document.getElementById('ap-test-ctr-main').style.display = "block";
+                        document.getElementById('google-form-iframe').setAttribute('src', '<?php echo $test_url; ?>')
                         $("#testEnd").prop("disabled", false);
                         $("#testStart").prop("disabled", true);
                         $("#ap-test-proctoring-status").html("Proctoring...");
