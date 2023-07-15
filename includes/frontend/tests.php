@@ -42,38 +42,35 @@
                 </p>
                 <ol class="text-blue-900 mb-14 w-full 2xl:w-3/4 list-disc py-8 px-14 bg-white rounded-lg shadow-lg">
                     <li class="mb-2 ">
-                        When a user clicks on <span class="text-green-600 uppercase tracking-wide font-bold mx-1">"start
-                            proctoring"</span>,
+                        When you click on <span class="text-green-600 uppercase tracking-wide font-bold mx-1">"start
+                            proctoring"</span>, a prompt comes up asking you to select a device type. You should click on <code class="mx-1">"Primary"</code> here. 
+                    </li>
+
+                    <li class="mb-2">
+                        Then you will get another prompt displaying a unique <code>"test label"</code>
+                    </li>
+                    <li class="mb-2">
+                        Now open URL of this page in your secondary/auxiliaruy device and click on <span class="text-green-600 uppercase tracking-wide font-bold mx-1">"start
+                            proctoring"</span> there. This time select <code class="mx-1">"Auxiliary"</code> when asked for the device type
+                    </li>
+                    <li class="mb-2">
+                        After a few seconds you will be asked to record a video of your surroundings using your Auxiliary device. Complete this step and upload the recording.
+                    </li>
+                    <li class="mb-2">
+                        Now go back to your Primary device and click on <code class="bg-slate-100 px-2 text-green-700">I did it</code> button. 
+                    </li>
+                    <li class="mb-2">
+                        You will need to grant permissions to share your screen. After which you will have to upload a picture of yourself.
+                    </li>
+                    <li class="mb-2">
+                        Right after uploading the picture of yourself the test will begin. AI proctoring starts on the primary device, and the random photos are taken on the auxiliary device
                     </li>
 
                     <li class="mb-2 ">
-                        After granting all the permission the Platform will show another pop-up asking them to upload a
-                        photo of themselves
-                    </li>
-
-                    <li class="mb-2 ">
-                        Once this is uploaded, the candidate will see a message asking them to open the same URL on an
-                        auxiliary device.
-                    </li>
-
-                    <li class="mb-2 ">
-                        When the auxiliary device is connected, the candidate is asked to scan the room with the auxiliary
-                        device and a video is recorded.
-                    </li>
-
-                    <li class="mb-2 ">
-                        Once the video recording is done, the user can start the test on their primary device.
-                    </li>
-
-                    <li class="mb-2 ">
-                        AI proctoring starts on the primary device, and the random photos are taken on the auxiliary device
-                    </li>
-
-                    <li class="mb-2 ">
-                        When the user is done with the test he should first <span
+                        When you are done with the test you should first <span
                             class="text-green-600 uppercase tracking-wide font-bold mx-1">"submit"</span> the test (say the
                         submit button in google form, which can be the submit button of any other test). Then they should
-                        click <span class="text-red-600 uppercase tracking-wide font-bold mx-1">"end proctoring"</span>
+                        click <span class="text-red-600 uppercase tracking-wide font-bold mx-1">"end proctoring"</span> on the Auxiliary device followed by clicking on <span class="text-red-600 uppercase tracking-wide font-bold mx-1">"end proctoring"</span> on Primary device
                     </li>
 
                     <li class="mb-2 ">
