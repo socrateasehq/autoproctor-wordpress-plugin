@@ -119,12 +119,12 @@ Instructions
                       </p>
                       <li class="ml-10 text-lg">
                           <code
-                              class="text-smtext-green-700 text-base mr-1 p-1 px-3 rounded bg-slate-200 leading-[2.5rem]">test_id</code>
+                              class="text-sm text-green-700 text-base mr-1 p-1 px-3 rounded bg-slate-200 leading-[2.5rem]">test_id</code>
                           is either 1 or 2, which refers to Test 1 or Test 2
                       </li>
                       <li class="ml-10 text-lg">
                           <code
-                              class="text-smtext-green-700 text-base mr-1 p-1 px-3 rounded bg-slate-200 leading-[2.5rem]">test_attempt_id</code>
+                              class="text-sm text-green-700 text-base mr-1 p-1 px-3 rounded bg-slate-200 leading-[2.5rem]">test_attempt_id</code>
                           is a unique string that identifies a single user&apos;s attempt for a
                           given test. For example, if a user attempts the same test 3 times,
                           there will be three different
@@ -140,11 +140,11 @@ Instructions
                               class="text-lg text-green-700 mr-1 p-1 px-3 rounded bg-slate-200 my-1">autoproctor.php</span>,
                           you will see that we are generating a random
                           string with <code
-                              class="text-smtext-green-700 mr-1 p-1 text-base rounded bg-slate-200 my-1">generateRandomString()</code>
+                              class="text-sm text-green-700 mr-1 p-1 text-base rounded bg-slate-200 my-1">generateRandomString()</code>
                           function,
                           whose value is used for the
                           <code
-                              class="text-smtext-green-700 mr-1 p-1 px-3 text-base rounded bg-slate-200 my-1">test_attempt_id</code>.
+                              class="text-sm text-green-700 mr-1 p-1 px-3 text-base rounded bg-slate-200 my-1">test_attempt_id</code>.
                           When an actual test attempt URL is loaded:
                       </p>
                       <li class="ml-10 text-lg my-1">
@@ -152,7 +152,7 @@ Instructions
                       </li>
                       <li class="ml-10 text-lg my-1">
                           On the Start Proctoring button being clicked, the AutoProctor SDK is initialized with the <code
-                              class="text-smtext-green-700 text-base mr-1 p-1 px-3 rounded bg-slate-200">.init</code>
+                              class="text-sm text-green-700 text-base mr-1 p-1 px-3 rounded bg-slate-200">.init</code>
                           method
                       </li>
                       <li class="ml-10 text-lg my-1">
@@ -162,14 +162,14 @@ Instructions
                               <li class="ml-10 text-lg leading-[2rem]"><em class="text-lg font-bold underline">Values
                                       identifying the user, the attempt, the
                                       session</em> - <code
-                                      class="text-smtext-green-700 text-base mr-1 p-1 px-3 rounded bg-slate-200">testAttemptId</code>
+                                      class="text-sm text-green-700 text-base mr-1 p-1 px-3 rounded bg-slate-200">testAttemptId</code>
                                   . <a href="">Click here</a> to see what these parameters are and what they mean
                               </li>
                               <li class="ml-10 text-lg leading-[2rem]"><em
                                       class="text-lg font-bold underline">Authentication information</em> - <code
-                                      class="text-smtext-green-700 text-base mr-1 p-1 px-3 rounded bg-slate-200">hashedTestAttemptId</code>,
+                                      class="text-sm text-green-700 text-base mr-1 p-1 px-3 rounded bg-slate-200">hashedTestAttemptId</code>,
                                   <code
-                                      class="text-smtext-green-700 text-base mr-1 p-1 px-3 rounded bg-slate-200">tenantId</code>.
+                                      class="text-sm text-green-700 text-base mr-1 p-1 px-3 rounded bg-slate-200">tenantId</code>.
                                   <a href="">Click here</a> to understand why this is needed and how to calculate it
                               </li>
                               <li class="ml-10 text-lg leading-[2rem]"><em class="text-lg font-bold underline">AutoProctor
@@ -179,7 +179,7 @@ Instructions
                       </li>
                       <li class="ml-10 text-lg leading-[2.5rem]">
                           Once AutoProctor is ready, it emits an event <code
-                              class="text-smtext-green-700 text-base mr-1 p-1 px-3 rounded bg-slate-200">apStartTest</code>
+                              class="text-sm text-green-700 text-base mr-1 p-1 px-3 rounded bg-slate-200">apStartTest</code>
                       </li>
                       <li class="ml-10 text-lg leading-[2.5rem]">
                           We listen to this event and then load the test by setting the src of the IFrame. AutoProctor may
@@ -188,22 +188,22 @@ Instructions
                       </li>
                       <li class="ml-10 text-lg leading-[2.5rem]">
                           AutoProctor continues to run in the background and when you click on End Proctoring,<code
-                              class="text-smtext-green-700 text-base mr-1 p-1 px-3 rounded bg-slate-200">.stop</code>
+                              class="text-sm text-green-700 text-base mr-1 p-1 px-3 rounded bg-slate-200">.stop</code>
                           method is
                           called which emits <code
-                              class="text-smtext-green-700 text-base mr-1 p-1 px-3 rounded bg-slate-200">apStopMonitoring</code>
+                              class="text-sm text-green-700 text-base mr-1 p-1 px-3 rounded bg-slate-200">apStopMonitoring</code>
                           event and makes a request to the AutoProctor server to mark the attempt as finished and
                           calculate the Trust Score.
                       </li>
                       <li class="ml-10 text-lg leading-[2.5rem]">
                           You should use this <code
-                              class="text-smtext-green-700 text-base mr-1 p-1 px-3 rounded bg-slate-200">apStopMonitoring</code>
+                              class="text-sm text-green-700 text-base mr-1 p-1 px-3 rounded bg-slate-200">apStopMonitoring</code>
                           to submit the actual test rather than providing users with
                           a dedicated button to submit a test. Because if you provide the users a way to submit their test
                           without ending the proctoring, they might submit the test and not click End Proctoring ever. In
                           such case the SDK will keep monitoring and will keep taking record of the evidence of any
                           violations as it doesn&apos;t know the test has ended and <code
-                              class="text-smtext-green-700 text-base mr-1 p-1 px-3 rounded bg-slate-200">apStopMonitoring</code>
+                              class="text-sm text-green-700 text-base mr-1 p-1 px-3 rounded bg-slate-200">apStopMonitoring</code>
                           event was never
                           emitted
                       </li>
