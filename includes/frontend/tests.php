@@ -6,6 +6,11 @@
 
 <?php startblock('head') ?>
     <?php superblock() ?>
+    
+    <?php
+    echo '<script src="' . esc_url( plugins_url( 'utils/utilities.js', dirname(__FILE__) ) ) . '" ></script> ';
+    ?>
+
     <?php
         if (!$is_finished) {
             ?>
@@ -209,43 +214,6 @@
             console.log('Aux Device Confirmed');
         });
 
-        async function markTestAttemptAsFinished(testAttemptId) {
-            $.ajax({
-                url: '<?php echo $ajax_url; ?>',
-                type: 'POST',
-                data: {
-                    action: 'mark_test_attempt_finished',
-                    testAttemptLabel: testAttemptId
-                },
-                success: function(response) {
-                    // Handle the AJAX response
-                    console.log(response);
-                },
-                error: function(errorThrown) {
-                    // Handle errors
-                    console.log(errorThrown);
-                }
-            });
-        }
-
-        async function markTestAsStarted(testAttemptId) {
-            $.ajax({
-                url: '<?php echo $ajax_url; ?>',
-                type: 'POST',
-                data: {
-                    action: 'mark_test_attempt_started',
-                    testAttemptLabel: testAttemptId
-                },
-                success: function(response) {
-                    // Handle the AJAX response
-                    console.log(response);
-                },
-                error: function(errorThrown) {
-                    // Handle errors
-                    console.log(errorThrown);
-                }
-            });
-        }
         </script>
         <?php
         }
