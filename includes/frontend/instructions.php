@@ -36,7 +36,7 @@ Instructions
       </div>
 
       <div
-        class="w-11/12 mx-auto shadow-bottom mt-24 p-10 border-y-2 rounded-3xl bg-gradient-to-l from-blue-100/50 to-green-100/50"
+        class="w-11/12 mx-auto shadow-bottom mt-24 p-10 border-b-2 "
       >
         <h1 class="text-2xl md:text-4xl font-bold mt-14 mb-6 text-blue-900">
           1. Demo Tests
@@ -117,7 +117,7 @@ Instructions
       </div>
 
       <div
-        class="w-11/12 mx-auto shadow-bottom mt-24 p-10 border-y-2 rounded-3xl bg-gradient-to-l from-blue-100/50 to-green-100/50"
+        class="w-11/12 mx-auto shadow-bottom mt-24 p-10 border-b-2 "
       >
         <h1 class="text-2xl md:text-4xl font-bold mt-14 mb-6 text-blue-900">
           2. How The Plugin Works
@@ -592,7 +592,7 @@ Instructions
       </div>
 
       <div
-        class="w-11/12 mx-auto shadow-bottom mt-24 p-10 border-y-2 rounded-3xl bg-gradient-to-l from-blue-100/50 to-green-100/50"
+        class="w-11/12 mx-auto shadow-bottom mt-24 p-10 border-b-2 "
       >
         <h1 class="text-2xl md:text-4xl font-bold mt-14 mb-6 text-blue-900">
           3. How To Integrate With Your Quizzing Solution
