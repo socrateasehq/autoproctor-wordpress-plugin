@@ -41,7 +41,7 @@
         <div id="ap-test-main" class="mt-8">
             <div class="w-11/12 md:w-10/12 mx-auto shadow-bottom">
                 <h1 class="text-3xl md:text-5xl font-bold mb-8 text-blue-900">Test <?php echo $test_id; ?></h1>
-                <p class="text-blue-900 mb-4 font-bold text-lg md:text-2xl">
+                <!-- <p class="text-blue-900 mb-4 font-bold text-lg md:text-2xl">
                     This page demonastrates the interface of any test that a user will open when they click on <code
                         class="uppercase text-green-600 font-bold">"start test"</code>
                 </p>
@@ -83,7 +83,7 @@
                         the usual report it generates on the primary device, it will show the photos that were taken every
                         10 seconds.
                     </li>
-                </ol>
+                </ol> -->
 
             </div>
             <div class="w-11/12 md:w-10/12 mx-auto flex flex-col md:flex-row justify-start items-center my-10">
@@ -149,7 +149,7 @@
                     previewVideo: false,
                     forceDesktop: true,
                     showCamPreview: false,
-                    auxiliaryDevice: <?php echo $test_id; ?> == 1? true: false,
+                    auxiliaryDevice: <?php echo $test_id; ?> == 1? false: true,
                 },
                 restrictConsole: false,
                 evidencePushInterval: 5,
