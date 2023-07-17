@@ -9,7 +9,12 @@ Test Results
 <?php superblock() ?>
 <link rel="stylesheet" href="https://ap-development.s3.ap-south-1.amazonaws.com/socTable.css">
 <script src="https://ap-development.s3.ap-south-1.amazonaws.com/socTable.js"></script>
+<?php
+echo '<script src="' . esc_url(plugins_url('utils/utilities.js', dirname(__FILE__))) . '" ></script> ';
+?>
 <?php endblock() ?>
+
+
 
 <?php startblock('body') ?>
 
@@ -31,40 +36,40 @@ Test Results
             },
             {
                 id: "started_at",
-                cell: (props) => {
-                    return props.getValue() === null ? "-" : props.getValue();
-                },
+                header: "Started At",
+                cell: (props) => !props.getValue() ? "-" : convertISOStringToLocalDateTime(props.getValue()),
+
             },
             {
                 id: "finished_at",
-                cell: (props) => {
-                    return props.getValue() === null ? "-" : props.getValue();
-                },
+                header: "Finished At",
+                cell: (props) => !props.getValue() ? "-" : convertISOStringToLocalDateTime(props.getValue()),
             },
             {
                 id: "finished",
                 header: "Test Completed",
                 cell: (props) => {
-                    return props.getValue() === "true" ? "Yes" : "No";
+                    return !props.getValue() ? "No" : "Yes";
                 },
+            },
+            {
+                id: "trust_score",
+                header: "Trust Score",
+                cell: (props) => `${props.getValue() !== null ? `${props.getValue() * 100} %` : "-"}`,
             },
             {
                 id: "report",
                 header: "Report",
                 enableSorting: false,
                 enableGlobalFilter: false,
-                cell: (props) => {
-                    return `<a class="text-blue-500 hover:underline hover:text-blue-600" href="${props.getValue()}" target="_blank">
-                                        View Report
-                                    </a>`;
+                cell: (props) => `<a class="font-normal flex flex-col items-center justify-center text-blue-600 hover:underline text-blue-700 hover:text-blue-800 inline-flex items-center justify-center whitespace-nowrap" href="${props.getValue()}" target="_blank"><strong>View Report</strong></a>`,
 
-                },
             },
         ];
 
         const tableData = [];
         attempts.forEach((d, index) => {
-            tableData.push([index + 1, d.test_attempt_label, d.started_at, d.finished_at, d.finished, d
+            tableData.push([index + 1, d.tenantTestAttemptId, d.startedAt, d.finishedAt,d.finishedAt, d.trustScore, d
                 .report_url
             ]);
         });

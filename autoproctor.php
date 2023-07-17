@@ -147,8 +147,47 @@ function getAllAttemptsDataByTestId($test_num)
  $results = $wpdb->get_results($query);
 
 // Process the results
+ $autoproctor_plugin_settings = get_option('autoproctor_settings');
+ $clientId                    = $autoproctor_plugin_settings['client_id'];
+ $clientSecret                = $autoproctor_plugin_settings['client_secret'];
+ $isDevelopmentMode           = $autoproctor_plugin_settings['development_mode'];
+ $url                         = $isDevelopmentMode ? "http://www.staging.autoproctor.co/api/v1/test-results/" : 'https://www.autoproctor.co/api/v1/test-results/';
+ $tenantTestAttemptIds        = [];
+ if (count($results)) {
+  foreach ($results as $data) {
+   if ($data->started_at) {
+    $tenantTestAttemptIds[] = $data->test_attempt_label;
+   }
+  }
 
- return $results;
+  if (count($tenantTestAttemptIds)) {
+   $post_data = array(
+    "tenantTestAttemptIds" => $tenantTestAttemptIds,
+   );
+
+   $credentials_string = $clientId . ":" . $clientSecret;
+   $base64_string      = base64_encode($credentials_string);
+   $result_scores      = wp_remote_post(
+    $url,
+    array(
+     'body'    => wp_json_encode($post_data),
+     'headers' => "Content-Type: application/json\r\n" . "Authorization: AP " . $base64_string . "\r\n",
+    )
+   );
+
+   $json_body = json_decode($result_scores['body']);
+   if ($json_body->status === "success") {
+    $test_results = $json_body->testResults;
+   } elseif ($json_body->status === "error") {
+    die($json_body->errorMsg);
+   }
+   return $test_results;
+  } else {
+   return [];
+  }
+ } else {
+  return $results;
+ }
 }
 
 // AJAX action callback function
@@ -239,12 +278,12 @@ function renderAutoProctorTemplate($template)
   if (file_exists($new_template)) {
    return $new_template;
   }
- }elseif ($custom_route === "6") {
-    $new_template = plugin_dir_path(__FILE__) . '/includes/frontend/ap-docs.php';
-    if (file_exists($new_template)) {
-     return $new_template;
-    }
-   }
+ } elseif ($custom_route === "6") {
+  $new_template = plugin_dir_path(__FILE__) . '/includes/frontend/ap-docs.php';
+  if (file_exists($new_template)) {
+   return $new_template;
+  }
+ }
 
  return $template;
 }

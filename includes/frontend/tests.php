@@ -6,21 +6,21 @@
 
 <?php startblock('head') ?>
     <?php superblock() ?>
-    
-    <?php
-    echo '<script src="' . esc_url( plugins_url( 'utils/utilities.js', dirname(__FILE__) ) ) . '" ></script> ';
-    ?>
 
     <?php
-        if (!$is_finished) {
-            ?>
+echo '<script src="' . esc_url(plugins_url('utils/utilities.js', dirname(__FILE__))) . '" ></script> ';
+?>
+
+    <?php
+if (!$is_finished) {
+ ?>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://ap-development.s3.amazonaws.com/autoproctor.2.7.8.min.css" />
     <script defer src="https://ap-development.s3.amazonaws.com/autoproctor.2.7.8.min.js"></script>
     <?php
-        }
-        ?>
+}
+?>
 <?php endblock() ?>
 
 <?php startblock('body') ?>
@@ -28,16 +28,16 @@
     <body class="min-h-screen bg-gradient-to-b from-blue-200 to-white" style="font-family: lato">
         <?php
 
-        if ($is_finished) {
-        ?>
+if ($is_finished) {
+ ?>
         <div class="container mx-auto mt-8 text-center">
             <h1 class="text-3xl font-bold mb-4">You have already finished the test.</h1>
             <p class="mb-4">Click on <a href="<?php echo $report_url; ?>" target="_blank"
                     class="text-blue-500 hover:text-blue-600">View Report</a> to see the summary.</p>
         </div>
         <?php
-        } else {
-        ?>
+} else {
+ ?>
         <div id="ap-test-main" class="mt-8">
             <div class="w-11/12 md:w-10/12 mx-auto shadow-bottom">
                 <h1 class="text-3xl md:text-5xl font-bold mb-8 text-blue-900">Test <?php echo $test_id; ?></h1>
@@ -48,7 +48,7 @@
                 <ol class="text-blue-900 mb-14 w-full 2xl:w-3/4 list-disc py-8 px-14 bg-white rounded-lg shadow-lg">
                     <li class="mb-2 ">
                         When you click on <span class="text-green-600 uppercase tracking-wide font-bold mx-1">"start
-                            proctoring"</span>, a prompt comes up asking you to select a device type. You should click on <code class="mx-1">"Primary"</code> here. 
+                            proctoring"</span>, a prompt comes up asking you to select a device type. You should click on <code class="mx-1">"Primary"</code> here.
                     </li>
 
                     <li class="mb-2">
@@ -62,7 +62,7 @@
                         After a few seconds you will be asked to record a video of your surroundings using your Auxiliary device. Complete this step and upload the recording.
                     </li>
                     <li class="mb-2">
-                        Now go back to your Primary device and click on <code class="bg-slate-100 px-2 text-green-700">I did it</code> button. 
+                        Now go back to your Primary device and click on <code class="bg-slate-100 px-2 text-green-700">I did it</code> button.
                     </li>
                     <li class="mb-2">
                         You will need to grant permissions to share your screen. After which you will have to upload a picture of yourself.
@@ -149,7 +149,7 @@
                     previewVideo: false,
                     forceDesktop: true,
                     showCamPreview: false,
-                    auxiliaryDevice: <?php echo $test_id; ?> == 1? false: true,
+                    auxiliaryDevice: <?php echo $test_id; ?> == '1' ? true : false,
                 },
                 restrictConsole: false,
                 evidencePushInterval: 5,
@@ -216,7 +216,7 @@
 
         </script>
         <?php
-        }
-        ?>
+}
+?>
     </body>
 <?php endblock() ?>

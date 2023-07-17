@@ -1,7 +1,7 @@
 <?php require_once 'ti.php' ?>
 
 <?php
-$testAttemptId = generateRandomString();
+$testAttemptId               = generateRandomString();
 $autoproctor_plugin_settings = get_option('autoproctor_settings');
 $clientId                    = $autoproctor_plugin_settings['client_id'];
 $clientSecret                = $autoproctor_plugin_settings['client_secret'];
@@ -13,7 +13,7 @@ $result                      = get_test_attempt_result($testAttemptId, $test_id)
 $results                     = getAllAttemptsDataByTestId($test_id);
 $is_finished                 = false;
 
-$attemptLabel = get_query_var('attempt_label');
+$attemptLabel        = get_query_var('attempt_label');
 $hashedTestAttemptId = getHashedTestAttemptId($testAttemptId);
 
 $test_url   = $test_id === '1' ? "https://docs.google.com/forms/d/e/1FAIpQLSf8HhhBZncIQMbfBBlKvIjtKOC66fgD2jjJ2ISJKwsQRtWHxQ/viewform?usp=sf_link" : "https://docs.google.com/forms/d/e/1FAIpQLSer10oV_0TsyODEDizseGMMDrydkNhYw_i8ayzq5Tusv0PMWQ/viewform?usp=sf_link";
@@ -28,10 +28,10 @@ if ($result) {
 }
 
 if ($results) {
-    foreach ($results as $row) {
-     $hashedLabel     = getHashedTestAttemptId($row->test_attempt_label);
-     $row->report_url = home_url() . '/ap/report/' . $row->test_attempt_label . '/?hashed_test_attempt_id=' . $hashedLabel;
-    }
+ foreach ($results as $row) {
+  $hashedLabel     = getHashedTestAttemptId($row->tenantTestAttemptId);
+  $row->report_url = home_url() . '/ap/report/' . $row->tenantTestAttemptId . '/?hashed_test_attempt_id=' . $hashedLabel;
+ }
 }
 
 ?>
