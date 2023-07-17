@@ -2,7 +2,7 @@
 
 add_settings_section(
  'autoproctor_setting',
- __('Autoproctor Settings', 'autoproctor-elearning'),
+ __('AutoProctor Settings', 'autoproctor-elearning'),
  'autoproctor_setting_section_text',
  'autoproctor'
 );

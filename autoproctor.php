@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name: Autoproctor
+ * Plugin Name: AutoProctor
  * Plugin URI: https://www.autoproctor.co/
  * Description:
  * Version: 1.0.0
- * Author: Autoproctor
+ * Author: AutoProctor
  * Author URI: https://www.autoproctor.co/
- * Developer: Autoproctor
+ * Developer: AutoProctor
  * Developer URI: https://www.autoproctor.co/
  * Text Domain: autoproctor-proctoring
  * Domain Path: /languages
@@ -209,9 +209,9 @@ add_filter('query_vars', function ($query_vars) {
  return $query_vars;
 });
 
-add_filter('template_include', 'renderAutoproctorTemplate', 99);
+add_filter('template_include', 'renderAutoProctorTemplate', 99);
 
-function renderAutoproctorTemplate($template)
+function renderAutoProctorTemplate($template)
 {
  $custom_route  = get_query_var('my_custom_route');
  $attempt_label = get_query_var('attempt_label');
@@ -253,7 +253,7 @@ function autoproctor_add_settings_menu()
 {
  add_menu_page(
   'Configuration',
-  __('Autoproctor', 'autoproctor-proctoring'),
+  __('AutoProctor', 'autoproctor-proctoring'),
   'manage_options', // User Capability
   'autoproctor_setting', // Page slug
   'autoproctor_setting_call', // Call to this page for the content of the page
