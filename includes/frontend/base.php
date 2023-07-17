@@ -47,6 +47,18 @@ if ($results) {
                 <?php endblock() ?>
             </title>
             <script src="https://cdn.tailwindcss.com"></script>
+            <style>
+                #frontCameraStreamHTMLElement{
+                    width: 60vw !important;
+                    height: auto !important;
+                    margin: auto !important;
+                    position: relative !important;
+                    left:0 !important; bottom:0 !important;
+                }
+                #ap-preview-camera-close{
+                    display:none !important;
+                }
+            </style>
         </head>
     <?php endblock() ?>
 

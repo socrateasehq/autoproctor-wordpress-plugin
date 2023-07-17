@@ -10,7 +10,7 @@ Instructions
     style="font-family: lato"
   >
     <div class="container mx-auto mt-8 pb-96">
-      <div class="w-11/12 mx-auto shadow-bottom">
+      <div class=" w-11/12 mx-auto shadow-bottom">
         <h1
           class="text-3xl md:text-5xl font-bold my-14 text-blue-900 p-5 border-b-2 border-green-700"
         >
@@ -25,30 +25,25 @@ Instructions
           It will also give you instructions on how you can integrate it with
           your testing/quizzing solution.
         </p>
-        <p class="text-blue-900 mb-4 text-base md:text-xl text-justify">
-          If you have just installed the plugin, we recommend you take a couple
-          of demo tests to see if
-          AutoProctor is
-          working properly. You can then read an explainer of how we have got
-          those tests to work. Finally, you can read developer documentation on
-          how you can integrate it with your quizzing solution.
+        <p class="text-blue-900 mb-4 text-base md:text-xl ">
+          If you have just installed the plugin, we <strong>highly recommend</strong> you finish these Sections one-by-one.
         </p>
       </div>
 
       <div
-        class="w-11/12 mx-auto  "
+        class=" w-11/12 mx-auto  "
       >
         <h1 class="text-2xl md:text-4xl font-bold mt-14 mb-6 text-blue-900">
           1. Demo Tests
         </h1>
-        <p class="text-blue-900 mb-4 text-base md:text-xl text-justify">
+        <p class="text-blue-900 mb-4 text-base md:text-xl ">
           Below, you see two cards. Each card refers to a separate test. These
           tests are dummy tests we have created and are part of the plugin. They
           are here only so that you can see how
           AutoProctor works. You
           shouldn't use these tests for your end users.
         </p>
-        <p class="text-blue-900 mb-4 text-base md:text-xl text-justify">
+        <p class="text-blue-900 mb-4 text-base md:text-xl ">
           Within each test, you see two buttons. If you click on the Start Test
           button, another tab will open where you will see three buttons to
           manage proctoring. Once you start proctoring, you must follow the
@@ -56,7 +51,7 @@ Instructions
           AutoProctor has been successfully
           started, the Google Form Quiz is loaded as an IFrame.
         </p>
-        <p class="text-blue-900 mb-4 text-base md:text-xl text-justify">
+        <p class="text-blue-900 mb-4 text-base md:text-xl ">
           You can then click on End Proctoring and you will then see a link to
           the Proctoring Report for that attempt. You can try the tests a few
           times and can click on the View Report button to see the results of
@@ -64,26 +59,26 @@ Instructions
         </p>
       </div>
 
-      <div class="w-11/12 mx-auto p-20 my-14 bg-blue-900 rounded-2xl shadow-xl">
+      <div class=" w-11/12 mx-auto p-5 md:p-20 my-14 bg-blue-900 rounded-2xl shadow-xl">
         <div class="flex flex-col md:flex-row justify-around">
           <div
-            class="bg-white transition-all rounded-lg p-5"
+            class="bg-white transition-all rounded-lg p-5 mb-5"
           >
             <h6 class="text-3xl font-bold text-green-700 mb-5">Test 1</h6>
             <p class="text-blue-900 text-2xl">
               Proctoring without auxiliary device
             </p>
-            <div class="flex flex-row mt-5 justify-around">
+            <div class="flex flex-col md:flex-row items-center mb-3  mt-5 justify-center md:justify-around">
               <a
                 target="_blank"
                 href="<?php echo home_url(); ?>/ap/dummy-tests/1/<?php echo $testAttemptId; ?>/"
-                class="bg-green-600 rounded-full transition-all text-white text-xs md:text-sm lg:text-base font-normal py-2 px-4 rounded uppercase tracking-wide"
+                class="bg-green-600 rounded-full transition-all mb-3 md:mb-0 text-white text-xs md:text-sm lg:text-base font-normal py-2 px-4 rounded uppercase tracking-wide"
                 >Start Test</a
               >
               <a
                 target="_blank"
                 href="<?php echo home_url(); ?>/ap/results/1/"
-                class="bg-none border-2 border-green-600 rounded-full transition-all text-green-600 text-xs md:text-sm lg:text-base font-normal ml-3 py-2 px-4 rounded uppercase tracking-wide"
+                class="bg-none border-2 border-green-600 rounded-full transition-all text-green-600 text-xs md:text-sm lg:text-base font-normal md:ml-3 py-2 px-4 rounded uppercase tracking-wide"
                 >View Attempts</a
               >
             </div>
@@ -95,17 +90,17 @@ Instructions
             <p class="text-blue-900 text-2xl">
               Proctoring with auxiliary device
             </p>
-            <div class="flex flex-row mt-5 justify-around">
+            <div class="flex flex-col md:flex-row items-center mb-3  mt-5 justify-center md:justify-around">
               <a
                 target="_blank"
                 href="<?php echo home_url(); ?>/ap/dummy-tests/2/<?php echo $testAttemptId; ?>/"
-                class="bg-green-600 rounded-full transition-all text-white text-xs md:text-sm lg:text-base font-normal py-2 px-4 rounded uppercase tracking-wide"
+                class="bg-green-600 rounded-full transition-all mb-3 md:mb-0 text-white text-xs md:text-sm lg:text-base font-normal py-2 px-4 rounded uppercase tracking-wide"
                 >Start Test</a
               >
               <a
                 target="_blank"
                 href="<?php echo home_url(); ?>/ap/results/2/"
-                class="bg-none border-2 border-green-600 rounded-full transition-all text-green-600 text-xs md:text-sm lg:text-base font-normal ml-3 py-2 px-4 rounded uppercase tracking-wide"
+                class="bg-none border-2 border-green-600 rounded-full transition-all text-green-600 text-xs md:text-sm lg:text-base font-normal md:ml-3 py-2 px-4 rounded uppercase tracking-wide"
                 >View Attempts</a
               >
             </div>
@@ -114,13 +109,13 @@ Instructions
       </div>
 
       <div
-        class="w-11/12 mx-auto shadow-bottom mt-24 "
+        class=" w-11/12 mx-auto shadow-bottom mt-24 "
       >
         <h1 class="text-2xl md:text-4xl font-bold  mb-6 text-blue-900">
           2. How The Plugin Works
         </h1>
         <ol class="text-blue-900 list-decimal">
-          <p class="text-blue-900 mb-4 text-base md:text-xl text-justify">
+          <p class="text-blue-900 mb-4 text-base md:text-xl ">
             In this plugin, AutoProctor is
             integrated as a JavaScript SDK. The SDK can:
           </p>
@@ -162,7 +157,7 @@ Instructions
           </ol>
 
           <ol class="text-blue-900 list-decimal mt-10">
-            <p class="text-blue-900 my-4 text-base md:text-xl text-justify">
+            <p class="text-blue-900 my-4 text-base md:text-xl ">
               If you look at the source code in
               <code
                 >autoproctor.php</code
@@ -191,7 +186,7 @@ Instructions
               You can see that many parameters are passed as arguments to this
               method. They fall into three categories:
               <ol
-                class="list-disc leading-[3rem] bg-white my-4 p-5 rounded-lg shadow"
+                class="list-disc leading-[3rem] bg-white my-4 py-5 md:px-5 rounded-lg shadow"
               >
                 <li class="ml-10 text-lg leading-[2rem]">
                   <span class="text-lg font-bold underline"
@@ -226,19 +221,19 @@ Instructions
                 </li>
               </ol>
             </li>
-            <li class="ml-10 text-lg leading-[2.5rem]">
+            <li class="ml-10 text-lg leading-[2rem]">
               Once AutoProctor is ready, it emits an event
               <code class=" "
                 >apStartTest</code
               >
             </li>
-            <li class="ml-10 text-lg leading-[2.5rem]">
+            <li class="ml-10 text-lg leading-[2rem]">
               We listen to this event and then load the test by setting the src
               of the IFrame. AutoProctor may take a few seconds to set up,
               especially if it is the first time. This is why the test must be
               loaded after AutoProctor is ready
             </li>
-            <li class="ml-10 text-lg leading-[2.5rem]">
+            <li class="ml-10 text-lg leading-[2rem]">
               AutoProctor continues to run in the background and when you click
               on End Proctoring,<code class=" "
                 >.stop</code
@@ -250,7 +245,7 @@ Instructions
               event and makes a request to the AutoProctor server to mark the
               attempt as finished and calculate the Trust Score.
             </li>
-            <li class="ml-10 text-lg leading-[2.5rem]">
+            <li class="ml-10 text-lg leading-[2rem]">
               You should use this
               <code class=" "
                 >apStopMonitoring</code
@@ -276,7 +271,7 @@ Instructions
             2.2 Loading the results of a Test
           </h1>
           <p
-            class="text-blue-900 mb-4 text-base md:text-lg text-justify leading-[4rem]"
+            class="text-blue-900 mb-4 text-base md:text-lg"
           >
             If you click on VIEW ATTEMPTS you will be
             taken to the URL
@@ -301,7 +296,7 @@ Instructions
             >.
           </p>
           <p
-            class="text-blue-900 mb-4 text-base md:text-lg text-justify leading-[4rem]"
+            class="text-blue-900 mb-4 text-base md:text-lg"
           >
             An important thing to note here is that only
             <code
@@ -335,7 +330,7 @@ Instructions
           <ol
             class="text-blue-900 list-disc leading-[3rem] bg-white my-4 p-5 rounded-lg shadow"
           >
-            <p class="text-blue-900 mb-4 text-base md:text-xl text-justify">
+            <p class="text-blue-900 mb-4 text-base md:text-xl ">
               When you visit the page you will see all the test attempts for
               that specific test in a tabulated form. The table has following
               columns:
@@ -385,7 +380,7 @@ Instructions
             2.3 Loading the Report of a Test Attempt
           </h1>
           <p
-            class="text-blue-900 mb-4 text-base md:text-lg text-justify leading-[4rem]"
+            class="text-blue-900 mb-4 text-base md:text-lg  "
           >
             All the test attempt reports are available at the URL of the form
             <code
@@ -421,7 +416,7 @@ Instructions
 
           <ol class="text-blue-900 list-decimal">
             <p
-              class="text-blue-900 mb-1 text-base md:text-lg text-justify leading-[4rem]"
+              class="text-blue-900 mb-1 text-base md:text-lg  "
             >
               There are two ways you can end up at this URL:
             </p>
@@ -438,21 +433,21 @@ Instructions
           </ol>
 
           <p
-            class="text-blue-900 mb-1 text-xl md:text-xl mt-10 text-justify font-bold leading-[4rem]"
+            class="text-blue-900 mb-1 text-xl md:text-xl mt-10  font-bold "
           >
             When you visit a particular report, you will see the following two
             sections there:
           </p>
           <ol
-            class="text-blue-900 flex flex-col md:flex-row justify-around mt-5"
+            class="text-blue-900 flex flex-col md:flex-row justify-around mt-5 "
           >
             <li
-              class="ml-5 text-white p-5 rounded shadow-xl px-20 bg-green-700 text-xl font-bold"
+              class="ml-5 text-white p-5 rounded shadow-xl md:px-20 text-center bg-green-700 text-xl font-bold mb-4 md:mb-0"
             >
               1. &nbsp; Report Overview
             </li>
             <li
-              class="ml-5 text-white p-5 rounded shadow-xl px-20 bg-green-700 text-xl font-bold"
+              class="ml-5 text-white p-5 rounded shadow-xl md:px-20 text-center bg-green-700 text-xl font-bold"
             >
               2. &nbsp; Proctor Summary
             </li>
@@ -460,7 +455,7 @@ Instructions
 
           <div class="text-blue-900 list-decimal mt-12">
             <p
-              class="text-blue-900 mb-1 text-base md:text-lg text-justify leading-[4rem]"
+              class="text-blue-900 mb-1 text-base md:text-lg  "
             >
               These sections are populated in a
               <code
@@ -516,7 +511,7 @@ Instructions
             2.4 Resuming a Test Attempt
           </h1>
           <p
-            class="text-blue-900 mb-4 text-base md:text-lg text-justify leading-[4rem]"
+            class="text-blue-900 mb-4 text-base md:text-lg  "
           >
             Occasionally, users may accidentally close the test tab or window,
             or they may refresh the page. In such situations, the AutoProctor
@@ -530,7 +525,7 @@ Instructions
           </p>
 
           <p
-            class="text-blue-900 mb-4 text-base md:text-lg text-justify leading-[4rem]"
+            class="text-blue-900 mb-4 text-base md:text-lg  "
           >
             However, if the user has already concluded the test, submitted the
             evidence, and generated a trust score, resuming the test is not
@@ -545,14 +540,14 @@ Instructions
       </div>
 
       <div
-        class="w-11/12 mx-auto shadow-bottom mt-24 "
+        class=" w-11/12 mx-auto shadow-bottom mt-24 "
       >
         <h1 class="text-2xl md:text-4xl font-bold mb-6 text-blue-900">
           3. How To Integrate With Your Quizzing Solution
         </h1>
 
         <ol class="text-blue-900 list-decimal">
-          <p class="text-blue-900 mb-4 text-base md:text-xl text-justify">
+          <p class="text-blue-900 mb-4 text-base md:text-xl ">
             The Section above explained how AutoProctor worked with our dummy
             tests. Getting it to work with your quizzing solution is fairly
             straightforward (in principle, at least!). Let's say your tests
