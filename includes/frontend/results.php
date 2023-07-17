@@ -21,6 +21,7 @@ Test Results
     </body>
     <script>
     const attempts = <?php echo json_encode($results); ?>;
+
     window.addEventListener('load', function() {
         const columns = [{
                 id: "index",
@@ -31,40 +32,29 @@ Test Results
             },
             {
                 id: "started_at",
-                cell: (props) => {
-                    return props.getValue() === null ? "-" : props.getValue();
-                },
+                cell: (props) => !props.getValue() ? "-" : convertISOStringToLocalDateTime(props.getValue()),
             },
             {
                 id: "finished_at",
-                cell: (props) => {
-                    return props.getValue() === null ? "-" : props.getValue();
-                },
+                cell: (props) => !props.getValue() ? "-" : convertISOStringToLocalDateTime(props.getValue()),
             },
             {
-                id: "finished",
-                header: "Test Completed",
-                cell: (props) => {
-                    return props.getValue() === "true" ? "Yes" : "No";
-                },
+                id: "trust_score",
+                header: "Trust Score",
+                cell: (props) => `${props.getValue() !== null ? `${props.getValue() * 100} %` : "-"}`,
             },
             {
                 id: "report",
                 header: "Report",
                 enableSorting: false,
                 enableGlobalFilter: false,
-                cell: (props) => {
-                    return `<a class="text-blue-500 hover:underline hover:text-blue-600" href="${props.getValue()}" target="_blank">
-                                        View Report
-                                    </a>`;
-
-                },
+                cell: (props) => `<a class="font-normal flex flex-col items-center justify-center text-blue-600 hover:underline text-blue-700 hover:text-blue-800 inline-flex items-center justify-center whitespace-nowrap" href="${props.getValue()}" target="_blank"><strong>View Report</strong></a>`,
             },
         ];
 
         const tableData = [];
-        attempts.forEach((d, index) => {
-            tableData.push([index + 1, d.test_attempt_label, d.started_at, d.finished_at, d.finished, d
+        attempts && attempts.length && attempts.forEach((d, index) => {
+            tableData.push([index + 1, d.tenantTestAttemptId, d.startedAt, d.finishedAt, d.trustScore, d
                 .report_url
             ]);
         });
