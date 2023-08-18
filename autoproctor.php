@@ -177,7 +177,7 @@ function getAllAttemptsDataByTestId($test_num)
 
    $json_body = json_decode($result_scores['body']);
    if ($json_body->status === "success") {
-    $test_results = $json_body->testResults;
+    $test_results = $json_body->results;
    } elseif ($json_body->status === "error") {
     die($json_body->errorMsg);
    }

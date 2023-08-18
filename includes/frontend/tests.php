@@ -14,10 +14,8 @@ echo '<script src="' . esc_url(plugins_url('utils/utilities.js', dirname(__FILE_
 <?php
 if (!$is_finished) {
  ?>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://ap-development.s3.amazonaws.com/autoproctor.2.7.8.min.css" />
-<script defer src="https://ap-development.s3.amazonaws.com/autoproctor.2.7.8.min.js"></script>
+<link rel="stylesheet" href="https://ap-development.s3.amazonaws.com/autoproctor.3.0.0.min.css" />
+<script defer src="https://ap-development.s3.amazonaws.com/autoproctor.3.0.0.min.js"></script>
 <?php
 }
 ?>
@@ -41,50 +39,6 @@ if ($is_finished) {
     <div id="ap-test-main" class="mt-8">
         <div class="w-11/12 md:w-10/12 mx-auto shadow-bottom">
             <h1 class="text-3xl md:text-5xl font-bold mb-8 text-blue-900">Test <?php echo $test_id; ?></h1>
-            <!-- <p class="text-blue-900 mb-4 font-bold text-lg md:text-2xl">
-                    This page demonastrates the interface of any test that a user will open when they click on <code
-                        class="uppercase text-green-600 font-bold">"start test"</code>
-                </p>
-                <ol class="text-blue-900 mb-14 w-full 2xl:w-3/4 list-disc py-8 px-14 bg-white rounded-lg shadow-lg">
-                    <li class="mb-2 ">
-                        When you click on <span class="text-green-600 uppercase tracking-wide font-bold mx-1">"start
-                            proctoring"</span>, a prompt comes up asking you to select a device type. You should click on <code class="mx-1">"Primary"</code> here.
-                    </li>
-
-                    <li class="mb-2">
-                        Then you will get another prompt displaying a unique <code>"test label"</code>
-                    </li>
-                    <li class="mb-2">
-                        Now open URL of this page in your secondary/auxiliaruy device and click on <span class="text-green-600 uppercase tracking-wide font-bold mx-1">"start
-                            proctoring"</span> there. This time select <code class="mx-1">"Auxiliary"</code> when asked for the device type
-                    </li>
-                    <li class="mb-2">
-                        After a few seconds you will be asked to record a video of your surroundings using your Auxiliary device. Complete this step and upload the recording.
-                    </li>
-                    <li class="mb-2">
-                        Now go back to your Primary device and click on <code class="bg-slate-100 px-2 text-green-700">I did it</code> button.
-                    </li>
-                    <li class="mb-2">
-                        You will need to grant permissions to share your screen. After which you will have to upload a picture of yourself.
-                    </li>
-                    <li class="mb-2">
-                        Right after uploading the picture of yourself the test will begin. AI proctoring starts on the primary device, and the random photos are taken on the auxiliary device
-                    </li>
-
-                    <li class="mb-2 ">
-                        When you are done with the test you should first <span
-                            class="text-green-600 uppercase tracking-wide font-bold mx-1">"submit"</span> the test (say the
-                        submit button in google form, which can be the submit button of any other test). Then they should
-                        click <span class="text-red-600 uppercase tracking-wide font-bold mx-1">"end proctoring"</span> on the Auxiliary device followed by clicking on <span class="text-red-600 uppercase tracking-wide font-bold mx-1">"end proctoring"</span> on Primary device
-                    </li>
-
-                    <li class="mb-2 ">
-                        Once the test ends, the Platform will generate a report with data from both devices. In addition to
-                        the usual report it generates on the primary device, it will show the photos that were taken every
-                        10 seconds.
-                    </li>
-                </ol> -->
-
         </div>
         <div class="w-11/12 md:w-10/12 mx-auto flex flex-col justify-start items-center my-5 ">
             <div class="mx-auto mt-8 mb-2">
@@ -129,15 +83,17 @@ if ($is_finished) {
     var allowSameDeviceasPrimarySecondary = true;
     window.addEventListener("load", function() {
         const clientID = '<?php echo $clientId ?>';
-
         let testAttemptId = '<?php echo $testAttemptId; ?>';
-
         const hashedTestAttemptId = '<?php echo $hashedTestAttemptId; ?>';
 
-        const apSettings = {
-            tenantId: clientID,
-            testAttemptId: testAttemptId,
-            hashedTestAttemptId: hashedTestAttemptId,
+        const credentials = {
+            clientId: clientID,
+            testAttemptId,
+            hashedTestAttemptId,
+            domain: '<?php echo $domain; ?>',
+        };
+
+        const proctoringOptions = {
             trackingOptions: {
                 audio: true,
                 numHumans: true,
@@ -145,37 +101,36 @@ if ($is_finished) {
                 captureSwitchedTab: true,
                 photosAtRandom: true,
                 numPhotosAtRandom: 5,
-                preventMultipleScreens: true,
+                recordSession: false,
+                detectMultipleScreens: true,
                 testTakerPhoto: true,
-                forceCaptureSwitchedTab: true,
-                forcePreventMultipleScreens: true,
-                forceFullScreen: false,
-                previewVideo: false,
-                forceDesktop: true,
                 showCamPreview: false,
                 auxiliaryDevice: <?php echo $test_id; ?> == 1 ? false : true,
             },
             restrictConsole: false,
             evidencePushInterval: 5,
             auxiliaryDeviceRandomPhotoPushInterval: 10,
-            userDetails: {},
+            userDetails: {
+                name: "First Last",
+                email: "user@autoproctor.co",
+            },
             testDuration: 60,
-            domain: '<?php echo $domain; ?>',
             showHowToVideo: false
         };
-        console.log(apSettings)
+
         async function init() {
             try {
-                autoProctorTest = await initAutoProctor(apSettings);
+                const apInst = new AutoProctor(credentials);
+                await apInst.setup(proctoringOptions);
 
                 document.getElementById("testStart").addEventListener("click", () => {
-                    autoProctorTest.start();
+                    apInst.start();
                 });
                 document.getElementById("testEnd").addEventListener("click", () => {
-                    autoProctorTest.stop();
+                    apInst.stop();
                 });
 
-                window.addEventListener("apStartTest", () => {
+                window.addEventListener("apMonitoringStarted", () => {
                     markTestAsStarted(testAttemptId, '<?php echo $ajax_url; ?>');
                     document.getElementById('ap-test-ctr-main').style.display = "block";
                     document.getElementById('google-form-iframe').setAttribute('src',
@@ -185,7 +140,7 @@ if ($is_finished) {
                     $("#ap-test-proctoring-status").html("Proctoring...");
                 });
 
-                window.addEventListener("apStopMonitoring", async () => {
+                window.addEventListener("apMonitoringStopped", async () => {
                     document.getElementById('ap-test-ctr-main').style.display = "none";
                     document.getElementById('test-completed-ctr').style.display = "block";
                     $("#testEnd").prop("disabled", true);
