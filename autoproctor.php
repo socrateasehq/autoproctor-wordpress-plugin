@@ -141,7 +141,7 @@ function getAllAttemptsDataByTestId($test_num)
  $table_name = $wpdb->prefix . 'ap_test_attempts';
 
  // Prepare the SQL query with the test_num condition
- $query = $wpdb->prepare("SELECT * FROM {$table_name} WHERE test_num = %d", $test_num);
+ $query = $wpdb->prepare("SELECT * FROM {$table_name} WHERE test_num = %d AND id > %d", $test_num, 3325);
 
  // Execute the query
  $results = $wpdb->get_results($query);
@@ -150,7 +150,7 @@ function getAllAttemptsDataByTestId($test_num)
  $autoproctor_plugin_settings = get_option('autoproctor_settings');
  $clientId                    = $autoproctor_plugin_settings['client_id'];
  $clientSecret                = $autoproctor_plugin_settings['client_secret'];
- $isDevelopmentMode           = $autoproctor_plugin_settings['development_mode'];
+ $isDevelopmentMode           = isset($autoproctor_plugin_settings['development_mode']) ? true : false;
  $url                         = $isDevelopmentMode ? "http://www.staging.autoproctor.co/api/v1/test-results/" : 'https://www.autoproctor.co/api/v1/test-results/';
  $tenantTestAttemptIds        = [];
  if (count($results)) {
@@ -175,7 +175,8 @@ function getAllAttemptsDataByTestId($test_num)
     )
    );
 
-   $json_body = json_decode($result_scores['body']);
+   $json_body    = json_decode($result_scores['body']);
+   $test_results = [];
    if ($json_body->status === "success") {
     $test_results = $json_body->results;
    } elseif ($json_body->status === "error") {
