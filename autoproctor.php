@@ -133,6 +133,25 @@ function markAttemptAsStarted($test_attempt_label)
 
 }
 
+function deleteAttempt($test_attempt_label)
+{
+ // Get access to the WordPress database
+ global $wpdb;
+
+// Set the table name
+ $table_name = $wpdb->prefix . 'ap_test_attempts';
+
+// Define the test_attempt_label you want to delete
+ $test_attempt_label = $test_attempt_label;
+
+// Delete the row with the specified test_attempt_label
+ $wpdb->delete(
+  $table_name,
+  array('test_attempt_label' => $test_attempt_label),
+  array('%s')
+ );
+}
+
 function getAllAttemptsDataByTestId($test_num)
 {
  // Get access to the WordPress database
@@ -224,8 +243,27 @@ function mark_test_attempt_started_callback()
  // Send the JSON-encoded response
  wp_send_json($response);
 }
+
+function delete_test_attempt_callback()
+{
+ // Retrieve the passed parameter
+ $attempt_label = $_POST['testAttemptLabel']; // Replace 'param1' with the actual parameter name
+
+ deleteAttempt($attempt_label);
+ // Process the AJAX request and generate a response
+ $response = array(
+  'message' => 'Attempt Deleted Successfully!',
+ );
+
+ // Send the JSON-encoded response
+ wp_send_json($response);
+}
+
 add_action('wp_ajax_mark_test_attempt_started', 'mark_test_attempt_started_callback');
 add_action('wp_ajax_nopriv_mark_test_attempt_started', 'mark_test_attempt_started_callback');
+
+add_action('wp_ajax_delete_test_attempt', 'delete_test_attempt_callback');
+add_action('wp_ajax_nopriv_delete_test_attempt', 'delete_test_attempt_callback');
 
 add_action('init', 'autoproctor_register_routes');
 

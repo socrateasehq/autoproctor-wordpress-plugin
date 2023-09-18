@@ -68,8 +68,8 @@ if ($is_finished) {
                 Loading…
             </iframe>
         </div>
-        <div id="aux-device-ctr">
-
+        <div id="aux-device-ctr"  style="display:none;">
+			<img class="mx-auto mb-6" src="https://i.ibb.co/M9LWcp1/4.jpg" />
         </div>
 
         <div class="container mx-auto mt-8 text-center" id="test-completed-ctr" style="display:none;">
@@ -131,6 +131,9 @@ if ($is_finished) {
                 });
 
                 window.addEventListener("apMonitoringStarted", () => {
+					if (apInst?.isAuxiliaryDeviceConfirmed && apInst.isAuxiliaryDeviceConfirmed) {
+						document.getElementById('aux-device-ctr').style.display = "block";
+						} else {
                     markTestAsStarted(testAttemptId, '<?php echo $ajax_url; ?>');
                     document.getElementById('ap-test-ctr-main').style.display = "block";
                     document.getElementById('google-form-iframe').setAttribute('src',
@@ -138,20 +141,28 @@ if ($is_finished) {
                     $("#testEnd").prop("disabled", false);
                     $("#testStart").prop("disabled", true);
                     $("#ap-test-proctoring-status").html("Proctoring...");
+						}
                 });
 
                 window.addEventListener("apMonitoringStopped", async () => {
-                    document.getElementById('ap-test-ctr-main').style.display = "none";
-                    document.getElementById('test-completed-ctr').style.display = "block";
-                    $("#testEnd").prop("disabled", true);
-                    $("#testStart").prop("disabled", false);
-                    $("#ap-test-proctoring-status").html("");
+						if (apInst?.isAuxiliaryDeviceConfirmed && apInst.isAuxiliaryDeviceConfirmed) {
+							document.getElementById('aux-device-ctr').style.display = "none";
+							document.getElementById('test-completed-ctr').style.display = "block";
+							$("#testEnd").prop("disabled", true);
+							$("#testStart").prop("disabled", false);
+							if (typeof isAuxDevice !== "undefined" && isAuxDevice) {
+								document.getElementById('report-url-ctr').style.display = "none";
+								return;
+							}
+						} else {
+							document.getElementById('ap-test-ctr-main').style.display = "none";
+							document.getElementById('test-completed-ctr').style.display = "block";
+							$("#testEnd").prop("disabled", true);
+							$("#testStart").prop("disabled", false);
+							$("#ap-test-proctoring-status").html("");
 
-                    if (typeof isAuxDevice !== "undefined" && isAuxDevice) {
-                        document.getElementById('report-url-ctr').style.display = "none";
-                        return;
-                    }
-                    markTestAttemptAsFinished(testAttemptId, '<?php echo $ajax_url; ?>');
+							markTestAttemptAsFinished(testAttemptId, '<?php echo $ajax_url; ?>');
+						}
                 });
                 document.getElementById("testReload").addEventListener("click", () => {
                     window.location.reload();

@@ -27,6 +27,31 @@ echo '<script src="' . esc_url(plugins_url('utils/utilities.js', dirname(__FILE_
     </body>
     <script>
     const attempts = <?php echo json_encode($results); ?>;
+
+   document.addEventListener("socTable.rendered", function() {
+        const deleteButtons = document.querySelectorAll('.ap-test-attempt-delete');
+        deleteButtons.forEach((button) => {
+            button.addEventListener('click', (e) => {
+                const testAttemptId = e.target.dataset.attemptid;
+                console.log('testAttemptId', testAttemptId )
+                deleteAttempt(testAttemptId);
+            });
+        });
+    });
+
+    document.addEventListener("socTable.updated", function() {
+        const deleteButtons = document.querySelectorAll('.ap-test-attempt-delete');
+        deleteButtons.forEach((button) => {
+            button.addEventListener('click', (e) => {
+                const testAttemptId = e.target.dataset.attemptid;
+                console.log('testAttemptId', testAttemptId )
+                deleteAttempt(testAttemptId);
+            });
+        });
+    });
+
+
+
     window.addEventListener('load', function() {
         const columns = [{
                 id: "index",
@@ -66,19 +91,35 @@ echo '<script src="' . esc_url(plugins_url('utils/utilities.js', dirname(__FILE_
                 cell: (props) => `<a class="font-normal flex flex-col items-center justify-center text-blue-600 hover:underline text-blue-700 hover:text-blue-800 inline-flex items-center justify-center whitespace-nowrap" href="${props.getValue()}" target="_blank"><strong>View Report</strong></a>`,
 
             },
+			{
+                id: "action",
+                header: "Action",
+                enableSorting: false,
+                enableGlobalFilter: false,
+                cell: (props) => `<button class="font-normal flex flex-col items-center justify-center text-red-600 hover:underline text-red-700 hover:text-red-800 inline-flex items-center justify-center whitespace-nowrap ap-test-attempt-delete" onclick="deleteAttempt()" data-attemptid='${props.getValue()}'>Delete Attempt</button>`,
+
+            },
         ];
 
         const tableData = [];
         attempts.forEach((d, index) => {
             tableData.push([index + 1, d.tenantTestAttemptId, d.startedAt, d.finishedAt,d.finishedAt, d.trustScore, d
-                .report_url
+                .report_url,d.tenantTestAttemptId
             ]);
         });
 
         socTable.initialize("ap-test-attempts", {
             columns,
+			tableOptions : {
+                defaultPageSize: 200,
+			},
             data: tableData,
         });
     });
+
+
+	function deleteAttempt(testAttemptId) {
+        deleteTestAttempt(testAttemptId, '<?php echo $ajax_url; ?>');
+    }
     </script>
 <?php endblock() ?>

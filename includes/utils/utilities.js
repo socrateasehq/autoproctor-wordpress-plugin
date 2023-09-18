@@ -17,6 +17,25 @@ async function markTestAsStarted(testAttemtId, ajaxUrl) {
     });
 }
 
+async function deleteTestAttempt(testAttemtId, ajaxUrl) {
+    $.ajax({
+        url: ajaxUrl,
+        type: "POST",
+        data: {
+            action: "delete_test_attempt",
+            testAttemptLabel: testAttemtId,
+        },
+        success: function (response) {
+            alert("Test attempt deleted successfully");
+            location.reload();
+        },
+        error: function (errorThrown) {
+            // Handle errors
+            console.log(errorThrown);
+        },
+    });
+}
+
 async function markTestAttemptAsFinished(testAttemtId, ajaxUrl) {
     $.ajax({
         url: ajaxUrl,
