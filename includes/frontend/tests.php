@@ -133,36 +133,36 @@ if ($is_finished) {
                 window.addEventListener("apMonitoringStarted", () => {
 					if (apInst?.isAuxiliaryDeviceConfirmed && apInst.isAuxiliaryDeviceConfirmed) {
 						document.getElementById('aux-device-ctr').style.display = "block";
-						} else {
-                    markTestAsStarted(testAttemptId, '<?php echo $ajax_url; ?>');
-                    document.getElementById('ap-test-ctr-main').style.display = "block";
-                    document.getElementById('google-form-iframe').setAttribute('src',
-                        '<?php echo $test_url; ?>')
-                    $("#testEnd").prop("disabled", false);
-                    $("#testStart").prop("disabled", true);
-                    $("#ap-test-proctoring-status").html("Proctoring...");
-						}
+                    } else {
+                        markTestAsStarted(testAttemptId, '<?php echo $ajax_url; ?>');
+                        document.getElementById('ap-test-ctr-main').style.display = "block";
+                        document.getElementById('google-form-iframe').setAttribute('src',
+                            '<?php echo $test_url; ?>')
+                        $("#testEnd").prop("disabled", false);
+                        $("#testStart").prop("disabled", true);
+                        $("#ap-test-proctoring-status").html("Proctoring...");
+                    }
                 });
 
                 window.addEventListener("apMonitoringStopped", async () => {
-						if (apInst?.isAuxiliaryDeviceConfirmed && apInst.isAuxiliaryDeviceConfirmed) {
-							document.getElementById('aux-device-ctr').style.display = "none";
-							document.getElementById('test-completed-ctr').style.display = "block";
-							$("#testEnd").prop("disabled", true);
-							$("#testStart").prop("disabled", false);
-							if (typeof isAuxDevice !== "undefined" && isAuxDevice) {
-								document.getElementById('report-url-ctr').style.display = "none";
-								return;
-							}
-						} else {
-							document.getElementById('ap-test-ctr-main').style.display = "none";
-							document.getElementById('test-completed-ctr').style.display = "block";
-							$("#testEnd").prop("disabled", true);
-							$("#testStart").prop("disabled", false);
-							$("#ap-test-proctoring-status").html("");
+                    if (apInst?.isAuxiliaryDeviceConfirmed && apInst.isAuxiliaryDeviceConfirmed) {
+                        document.getElementById('aux-device-ctr').style.display = "none";
+                        document.getElementById('test-completed-ctr').style.display = "block";
+                        $("#testEnd").prop("disabled", true);
+                        $("#testStart").prop("disabled", false);
+                        if (typeof isAuxDevice !== "undefined" && isAuxDevice) {
+                            document.getElementById('report-url-ctr').style.display = "none";
+                            return;
+                        }
+                    } else {
+                        document.getElementById('ap-test-ctr-main').style.display = "none";
+                        document.getElementById('test-completed-ctr').style.display = "block";
+                        $("#testEnd").prop("disabled", true);
+                        $("#testStart").prop("disabled", false);
+                        $("#ap-test-proctoring-status").html("");
 
-							markTestAttemptAsFinished(testAttemptId, '<?php echo $ajax_url; ?>');
-						}
+                        markTestAttemptAsFinished(testAttemptId, '<?php echo $ajax_url; ?>');
+                    }
                 });
                 document.getElementById("testReload").addEventListener("click", () => {
                     window.location.reload();

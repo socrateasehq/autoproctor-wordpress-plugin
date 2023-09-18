@@ -46,7 +46,7 @@ Test Report
     };
 
 
-      try {
+    try {
         const apInst = new AutoProctor(credentials);
         apInst.showReport({
             showProctoringOverview: true,
@@ -60,9 +60,9 @@ Test Report
                 email: "user@gmail.co",
             },
           });
-      } catch (err) {
-          console.log(err);
-      }
+    } catch (err) {
+        console.log(err);
+    }
   });
   </script>
 <?php endblock() ?>
