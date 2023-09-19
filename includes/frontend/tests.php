@@ -13,7 +13,7 @@ echo '<script src="' . esc_url(plugins_url('utils/utilities.js', dirname(__FILE_
 
 <?php
 if (!$is_finished) {
- ?>
+    ?>
 <link rel="stylesheet" href="https://ap-development.s3.amazonaws.com/autoproctor.3.0.0.min.css" />
 <script defer src="https://ap-development.s3.amazonaws.com/autoproctor.3.0.0.min.js"></script>
 <?php
@@ -27,7 +27,7 @@ if (!$is_finished) {
     <?php
 
 if ($is_finished) {
- ?>
+    ?>
     <div class="container mx-auto mt-8 text-center">
         <h1 class="text-3xl font-bold mb-4">You have already finished the test.</h1>
         <p class="mb-4">Click on <a href="<?php echo $report_url; ?>" target="_blank"
@@ -35,7 +35,7 @@ if ($is_finished) {
     </div>
     <?php
 } else {
- ?>
+    ?>
     <div id="ap-test-main" class="mt-8">
         <div class="w-11/12 md:w-10/12 mx-auto shadow-bottom">
             <h1 class="text-3xl md:text-5xl font-bold mb-8 text-blue-900">Test <?php echo $test_id; ?></h1>
@@ -69,6 +69,7 @@ if ($is_finished) {
             </iframe>
         </div>
         <div id="aux-device-ctr"  style="display:none;">
+            <span class="block mt-4 text-lg font-semibold mx-auto text-center mb-2 md:mb-4" >Please position your auxiliary camera like this</span>
 			<img class="mx-auto mb-6" src="https://i.ibb.co/M9LWcp1/4.jpg" />
         </div>
 
