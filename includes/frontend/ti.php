@@ -28,7 +28,7 @@ function startblock($name, $filters = null)
 {
  $trace = _ti_callingTrace();
  _ti_init($trace);
- $stack   =  &$GLOBALS['_ti_stack'];
+ $stack   = &$GLOBALS['_ti_stack'];
  $stack[] = _ti_newBlock($name, $filters, $trace);
 }
 
@@ -36,7 +36,7 @@ function endblock($name = null)
 {
  $trace = _ti_callingTrace();
  _ti_init($trace);
- $stack =  &$GLOBALS['_ti_stack'];
+ $stack = &$GLOBALS['_ti_stack'];
  if ($stack) {
   $block = array_pop($stack);
   if ($name && $name != $block['name']) {
@@ -65,9 +65,9 @@ function superblock()
 
 function getsuperblock()
 {
- $stack =  &$GLOBALS['_ti_stack'];
+ $stack = &$GLOBALS['_ti_stack'];
  if ($stack) {
-  $hash  =  &$GLOBALS['_ti_hash'];
+  $hash  = &$GLOBALS['_ti_hash'];
   $block = end($stack);
   if (isset($hash[$block['name']])) {
    return implode(
@@ -88,10 +88,10 @@ function getsuperblock()
 
 function flushblocks()
 {
- $base =  &$GLOBALS['_ti_base'];
+ $base = &$GLOBALS['_ti_base'];
  if ($base) {
-  $stack =  &$GLOBALS['_ti_stack'];
-  $level =  &$GLOBALS['_ti_level'];
+  $stack = &$GLOBALS['_ti_stack'];
+  $level = &$GLOBALS['_ti_level'];
   while ($block = array_pop($stack)) {
    _ti_warning(
     "missing endblock() for startblock('{$block['name']}')",
@@ -114,7 +114,7 @@ function blockbase()
 
 function _ti_init($trace)
 {
- $base =  &$GLOBALS['_ti_base'];
+ $base = &$GLOBALS['_ti_base'];
  if ($base && !_ti_inBaseOrChild($trace)) {
   flushblocks(); // will set $base to null
  }
@@ -137,8 +137,8 @@ function _ti_init($trace)
 
 function _ti_newBlock($name, $filters, $trace)
 {
- $base  =  &$GLOBALS['_ti_base'];
- $stack =  &$GLOBALS['_ti_stack'];
+ $base  = &$GLOBALS['_ti_base'];
+ $stack = &$GLOBALS['_ti_stack'];
  while ($block = end($stack)) {
   if (_ti_isSameFile($block['trace'], $trace)) {
    break;
@@ -184,10 +184,10 @@ function _ti_newBlock($name, $filters, $trace)
 
 function _ti_insertBlock($block)
 { // at this point, $block is done being modified
- $base         =  &$GLOBALS['_ti_base'];
- $stack        =  &$GLOBALS['_ti_stack'];
- $hash         =  &$GLOBALS['_ti_hash'];
- $end          =  &$GLOBALS['_ti_end'];
+ $base         = &$GLOBALS['_ti_base'];
+ $stack        = &$GLOBALS['_ti_stack'];
+ $hash         = &$GLOBALS['_ti_hash'];
+ $end          = &$GLOBALS['_ti_end'];
  $block['end'] = $end = ob_get_length();
  $name         = $block['name'];
  if ($stack || _ti_inBase($block['trace'])) {
@@ -198,12 +198,12 @@ function _ti_insertBlock($block)
   );
   if ($stack) {
    // nested block
-   $stack[count($stack) - 1]['children'][] =  &$block_anchor;
+   $stack[count($stack) - 1]['children'][] = &$block_anchor;
   } else {
    // top-level block in base
-   $base['children'][] =  &$block_anchor;
+   $base['children'][] = &$block_anchor;
   }
-  $hash[$name] =  &$block_anchor; // same reference as children array
+  $hash[$name] = &$block_anchor; // same reference as children array
  } elseif (isset($hash[$name])) {
   if (_ti_isSameFile($hash[$name]['block']['trace'], $block['trace'])) {
    _ti_warning(
@@ -220,10 +220,10 @@ function _ti_insertBlock($block)
 
 function _ti_bufferCallback($buffer)
 {
- $base  =  &$GLOBALS['_ti_base'];
- $stack =  &$GLOBALS['_ti_stack'];
- $end   =  &$GLOBALS['_ti_end'];
- $after =  &$GLOBALS['_ti_after'];
+ $base  = &$GLOBALS['_ti_base'];
+ $stack = &$GLOBALS['_ti_stack'];
+ $end   = &$GLOBALS['_ti_end'];
+ $after = &$GLOBALS['_ti_after'];
  if ($base) {
   while ($block = array_pop($stack)) {
    _ti_insertBlock($block);

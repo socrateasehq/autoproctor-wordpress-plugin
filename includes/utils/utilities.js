@@ -26,8 +26,8 @@ async function deleteTestAttempt(testAttemtId, ajaxUrl) {
             testAttemptLabel: testAttemtId,
         },
         success: function (response) {
-            alert("Test attempt deleted successfully");
-            location.reload();
+            //             alert("Test attempt deleted successfully");
+            //             location.reload();
         },
         error: function (errorThrown) {
             // Handle errors

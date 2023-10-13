@@ -39,7 +39,7 @@ echo '<script src="' . esc_url(plugins_url('utils/utilities.js', dirname(__FILE_
         });
     });
 
-    document.addEventListener("socTable.updated", function() {
+		document.addEventListener("socTable.updated", function() {
         const deleteButtons = document.querySelectorAll('.ap-test-attempt-delete');
         deleteButtons.forEach((button) => {
             button.addEventListener('click', (e) => {
@@ -111,7 +111,7 @@ echo '<script src="' . esc_url(plugins_url('utils/utilities.js', dirname(__FILE_
         socTable.initialize("ap-test-attempts", {
             columns,
 			tableOptions : {
-                defaultPageSize: 200,
+defaultPageSize: 200,
 			},
             data: tableData,
         });

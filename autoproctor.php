@@ -275,6 +275,8 @@ function autoproctor_register_routes()
  add_rewrite_rule('^ap/results/([^/]+)/?$', 'index.php?my_custom_route=4&test_id=$matches[1]', 'top');
  add_rewrite_rule('^ap/report/([^/]+)/?$', 'index.php?my_custom_route=5&attempt_label=$matches[1]', 'top');
  add_rewrite_rule('^ap-docs?$', 'index.php?my_custom_route=6', 'top');
+ add_rewrite_rule('^ap/aux-device/?$', 'index.php?my_custom_route=7', 'top');
+
  flush_rewrite_rules();
 
 }
@@ -319,6 +321,11 @@ function renderAutoProctorTemplate($template)
   }
  } elseif ($custom_route === "6") {
   $new_template = plugin_dir_path(__FILE__) . '/includes/frontend/ap-docs.php';
+  if (file_exists($new_template)) {
+   return $new_template;
+  }
+ } elseif ($custom_route === "7") {
+  $new_template = plugin_dir_path(__FILE__) . '/includes/frontend/aux-device.php';
   if (file_exists($new_template)) {
    return $new_template;
   }

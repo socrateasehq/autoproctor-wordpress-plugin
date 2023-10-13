@@ -10,8 +10,8 @@ Test Report
 
 <?php startblock('head') ?>
 <?php superblock() ?>
-<link rel="stylesheet" href="https://ap-development.s3.amazonaws.com/autoproctor.3.0.0.min.css" />
-<script defer src="https://ap-development.s3.amazonaws.com/autoproctor.3.0.0.min.js"></script>
+<link rel="stylesheet" href="https://ap-development.s3.amazonaws.com/autoproctor.3.0.1.min.css?v=7" />
+<script defer src="https://ap-development.s3.amazonaws.com/autoproctor.3.0.1.min.js?v=7"></script>
 <?php endblock() ?>
 
 <?php startblock('body') ?>
@@ -46,11 +46,12 @@ Test Report
     };
 
 
-    try {
+      try {
         const apInst = new AutoProctor(credentials);
         apInst.showReport({
             showProctoringOverview: true,
             showProctoringSummary: true,
+			showDownloadReportBtn: true,
             proctoringSummaryDOMId: "ap-report__proctor",
             proctoringOverviewDOMId: "ap-report__overview",
             groupReportsIntoTabs: false,
@@ -60,9 +61,9 @@ Test Report
                 email: "user@gmail.co",
             },
           });
-    } catch (err) {
-        console.log(err);
-    }
+      } catch (err) {
+          console.log(err);
+      }
   });
   </script>
 <?php endblock() ?>
